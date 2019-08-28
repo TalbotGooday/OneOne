@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="colorPrimaryLog">#E6232A32</color>
+	<color name="colorPrimaryDark">#E6232A32</color>
+	<color name="colorAccent">#E6232A32</color>
+	<color name="colorFakeProgressProgress">#E6232A32</color>
+
+	<color name="colorDebug">#4184f3</color>
+	<color name="colorErrors">#fd4440</color>
+	<color name="colorWarnings">#feda20</color>
+</resources>
