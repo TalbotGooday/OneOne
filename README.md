@@ -1,4 +1,5 @@
 # OneOne
 Simple lib for local logging
 
-https://jitpack.io/v/TalbotGooday/OneOne.svg
+[![Release](https://jitpack.io/v/TalbotGooday/OneOne.svg)]
+(https://jitpack.io/#TalbotGooday/OneOne)
