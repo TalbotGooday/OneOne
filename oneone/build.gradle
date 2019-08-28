@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.TalbotGooday'
 
 android {
     compileSdkVersion 29
@@ -46,3 +44,6 @@ dependencies {
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
 }
+
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.TalbotGooday'
