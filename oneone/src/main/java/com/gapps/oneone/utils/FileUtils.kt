@@ -8,6 +8,9 @@ import java.io.File
 import java.nio.charset.Charset
 
 const val FILE_LOG = "one-one.log"
+const val FILE_LOG_D = "one-one-d.log"
+const val FILE_LOG_W = "one-one-w.log"
+const val FILE_LOG_E = "one-one-e.log"
 
 const val DEBUG = "OO_LOG_D"
 const val WARNING = "OO_LOG_W"
@@ -17,14 +20,25 @@ private const val DELIMITER = "&"
 
 fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
 
-	val file = File(context.cacheDir, FILE_LOG)
+	val fileName = when (type) {
+		DEBUG -> FILE_LOG_D
+		WARNING -> FILE_LOG_W
+		ERROR -> FILE_LOG_E
+		else -> FILE_LOG_D
+	}
+
+	val file = File(context.cacheDir, fileName)
 
 	try {
-		val toJson = Gson().toJson(message)
+		val toJson = if (message is String) {
+			message
+		} else {
+			Gson().toJson(message)
+		}
 
-		val messageB64 = Base64.encodeToString(toJson.toByteArray(), Base64.DEFAULT)
+		val messageB64 = Base64.encodeToString(toJson.toByteArray(), Base64.NO_WRAP)
 
-		val messageStr = "$type$DELIMITER($tag)$DELIMITER$messageB64"
+		val messageStr = "$tag$DELIMITER$messageB64\n"
 
 		file.appendText(messageStr)
 	} catch (e: Exception) {
@@ -32,44 +46,55 @@ fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
 	}
 }
 
-fun getMessagesFromLog(context: Context): Map<String, List<LogModel>>? {
-	val file = File(context.cacheDir, FILE_LOG)
+fun getMessagesFromLog(context: Context, type: String? = null): Map<String, List<LogModel>?> {
+	val files = getFilesMap(type, context)
 
-	val readLines = try {
-		file.readLines()
-	} catch (e: Exception) {
-		e.printStackTrace()
-		null
-	} ?: return null
+	val result = mutableMapOf<String, List<LogModel>?>()
 
-	val debug = mutableListOf<LogModel>()
-	val warnings = mutableListOf<LogModel>()
-	val errors = mutableListOf<LogModel>()
+	files.keys.forEach { typeKey: String ->
+		val file = files[typeKey]
 
-	readLines.forEach {
-		when (it.substringBefore(DELIMITER)) {
-			DEBUG -> {
-				debug.add(createLogModel(it.substringBefore(DELIMITER), it.substringAfter(DELIMITER)))
+		if (file != null) {
+			val readLines = try {
+				file.readLines()
+			} catch (e: Exception) {
+				e.printStackTrace()
+				null
 			}
-			WARNING -> {
-				warnings.add(createLogModel(it.substringBefore(DELIMITER), it.substringAfter(DELIMITER)))
-			}
-			ERROR -> {
-				errors.add(createLogModel(it.substringBefore(DELIMITER), it.substringAfter(DELIMITER)))
-			}
+
+			val data = readLines?.map { line -> createLogModel(typeKey, line.substringBefore(DELIMITER), line.substringAfter(DELIMITER)) }
+
+			data?.run { result[typeKey] = this }
 		}
 	}
 
-	return mapOf(
-			DEBUG to debug,
-			WARNING to warnings,
-			ERROR to errors
-	)
+	return result
 }
 
-fun createLogModel(type: String, messageWithType: String): LogModel {
-	val tag = messageWithType.substringBefore(DELIMITER)
-	val messageBytes = Base64.decode(messageWithType.substringAfter(DELIMITER), Base64.DEFAULT)
+fun getFilesMap(type: String?, context: Context): MutableMap<String, File> {
+	val files = mutableMapOf<String, File>()
+
+	when (type) {
+		null -> {
+			files[DEBUG] = File(context.cacheDir, FILE_LOG_D)
+			files[WARNING] = File(context.cacheDir, FILE_LOG_W)
+			files[ERROR] = File(context.cacheDir, FILE_LOG_E)
+		}
+		DEBUG -> {
+			files[DEBUG] = File(context.cacheDir, FILE_LOG_D)
+		}
+		WARNING -> {
+			files[WARNING] = File(context.cacheDir, FILE_LOG_W)
+		}
+		ERROR -> {
+			files[ERROR] = File(context.cacheDir, FILE_LOG_E)
+		}
+	}
+	return files
+}
+
+fun createLogModel(type: String, tag: String, messageB64: String): LogModel {
+	val messageBytes = Base64.decode(messageB64, Base64.NO_WRAP)
 
 	return LogModel().apply {
 		this.type = type

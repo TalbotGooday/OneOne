@@ -14,7 +14,7 @@ private val TAB_TITLES = arrayOf(
 		ERROR
 )
 
-class SectionsPagerAdapter(fm: FragmentManager, private val logData: Map<String, List<LogModel>>?)
+class SectionsPagerAdapter(fm: FragmentManager, private val logData: Map<String, List<LogModel>?>)
 	: FragmentPagerAdapter(fm) {
 
 	override fun getItem(position: Int): Fragment {
@@ -29,7 +29,7 @@ class SectionsPagerAdapter(fm: FragmentManager, private val logData: Map<String,
 				ERROR
 			}
 		}
-		val data = logData?.get(tag)
+		val data = logData[tag]
 
 		return PlaceholderFragment.newInstance(data)
 	}

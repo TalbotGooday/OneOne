@@ -10,6 +10,7 @@ import com.gapps.oneonelogger.R
 import com.gapps.oneone.log.LogActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 		fab.setOnClickListener { view ->
 			OneOne.d("MainActivity", "send letter")
 			OneOne.sendLog("alexey.mostovoy.w@gmail.com")
+
 		}
 	}
 

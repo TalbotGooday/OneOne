@@ -10,5 +10,6 @@ class App: Application() {
 		OneOne.init(this)
 
 		OneOne.d(message = "init")
+
 	}
 }
