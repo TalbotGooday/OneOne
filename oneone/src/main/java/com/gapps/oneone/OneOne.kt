@@ -61,10 +61,11 @@ object OneOne {
 		sendEmail(ctx, email)
 	}
 
-	fun getMessages(): Map<String, List<LogModel>?> {
+	@JvmOverloads
+	fun getMessages(type: String? = null): Map<String, List<LogModel>?> {
 		val ctx = context ?: throw IllegalStateException("Call init() first")
 
-		return getMessagesFromLog(ctx)
+		return getMessagesFromLog(ctx, type)
 	}
 
 	private fun log(type: String, tag: String? = null, message: Any?) {
