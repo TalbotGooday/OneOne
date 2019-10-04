@@ -1,6 +1,7 @@
 package com.gapps.oneone
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.gapps.oneone.models.LogModel
@@ -17,7 +18,7 @@ object OneOne {
 
 	private var context: Context? = null
 
-	fun init(context: Context) {
+	fun init(context: Application) {
 		this.context = context
 
 		initCrashLogger()
@@ -55,10 +56,21 @@ object OneOne {
 		log(ERROR, tag, message)
 	}
 
+	@JvmOverloads
+	fun i(tag: String? = null, message: Any?) {
+		log(INFO, tag, message)
+	}
+
 	fun sendLog(email: String) {
 		val ctx = context ?: throw IllegalStateException("Call init() first")
 
 		sendEmail(ctx, email)
+	}
+
+	fun clearAll(){
+		val ctx = context ?: throw IllegalStateException("Call init() first")
+
+		clear(ctx)
 	}
 
 	@JvmOverloads

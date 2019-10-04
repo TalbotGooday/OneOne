@@ -12,6 +12,7 @@ import com.gapps.oneone.R
 import com.gapps.oneone.models.LogModel
 import com.gapps.oneone.utils.DEBUG
 import com.gapps.oneone.utils.ERROR
+import com.gapps.oneone.utils.INFO
 import com.gapps.oneone.utils.WARNING
 import kotlinx.android.synthetic.main.item_log.view.*
 import java.util.*
@@ -58,6 +59,9 @@ class LogListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogL
 					R.color.colorWarnings
 				}
 				ERROR -> {
+					R.color.colorErrors
+				}
+				INFO -> {
 					R.color.colorErrors
 				}
 				else -> {

@@ -8,20 +8,38 @@
 	android:orientation="vertical"
 	tools:context="com.gapps.oneone.log.LogActivity">
 
-	<LinearLayout
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="55dp"
-		android:gravity="center_vertical">
+		android:layout_height="wrap_content">
 
-		<androidx.appcompat.widget.AppCompatImageButton
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="55dp"
+			android:fontFamily="@font/ps_medium"
+			android:gravity="center"
+			android:text="@string/log"
+			android:textColor="@android:color/white"
+			android:textSize="18sp" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/report"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical|end"
+			android:layout_margin="10dp"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_bug_report" />
+
+		<androidx.appcompat.widget.AppCompatImageView
 			android:id="@+id/back"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/ic_arrow"
-			android:layout_marginStart="16dp"
-			android:background="?selectableItemBackgroundBorderless"/>
+			android:layout_gravity="center_vertical|start"
+			android:layout_margin="10dp"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_arrow" />
+	</FrameLayout>
 
-	</LinearLayout>
 
 	<com.google.android.material.tabs.TabLayout
 		android:id="@+id/tabs"

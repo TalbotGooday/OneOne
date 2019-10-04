@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import com.gapps.oneone.BuildConfig
 import java.io.File
-import java.lang.StringBuilder
 
 fun sendEmail(context: Context, email: String, type: String? = null) {
 	val filesNames = mutableListOf<String>()
@@ -17,6 +16,7 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 			filesNames.add(FILE_LOG_D)
 			filesNames.add(FILE_LOG_W)
 			filesNames.add(FILE_LOG_E)
+			filesNames.add(FILE_LOG_I)
 		}
 		DEBUG -> {
 			filesNames.add(FILE_LOG_D)
@@ -27,17 +27,23 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 		ERROR -> {
 			filesNames.add(FILE_LOG_E)
 		}
+		INFO -> {
+			filesNames.add(FILE_LOG_I)
+		}
 	}
 
 	val filesUri = mutableListOf<Uri>()
 
 	filesNames.forEach {
 		val file = File(context.cacheDir, it)
-		val fileExt = File(context.externalCacheDir, it)
 
-		file.copyTo(fileExt, true)
+		if (file.exists()) {
+			val fileExt = File(context.externalCacheDir, it)
 
-		filesUri.add(Uri.fromFile(fileExt))
+			file.copyTo(fileExt, true)
+
+			filesUri.add(Uri.fromFile(fileExt))
+		}
 	}
 
 	val emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
@@ -54,10 +60,12 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 
 	emailIntent.putExtra(Intent.EXTRA_TEXT, getAppInfo())
 
-	context.startActivity(Intent.createChooser(emailIntent, "Send email...")
-			.apply {
-				addFlags(FLAG_ACTIVITY_NEW_TASK)
-			}, null)
+	if (emailIntent.resolveActivity(context.packageManager) != null) {
+		context.startActivity(Intent.createChooser(emailIntent, "Send email...")
+				.apply {
+					addFlags(FLAG_ACTIVITY_NEW_TASK)
+				}, null)
+	}
 }
 
 fun getAppInfo(): String {

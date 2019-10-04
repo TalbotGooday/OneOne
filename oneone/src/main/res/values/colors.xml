@@ -7,5 +7,6 @@
 
 	<color name="colorDebug">#4184f3</color>
 	<color name="colorErrors">#fd4440</color>
+	<color name="colorInfo">#FDB840</color>
 	<color name="colorWarnings">#feda20</color>
 </resources>

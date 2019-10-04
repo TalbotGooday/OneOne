@@ -11,10 +11,12 @@ const val FILE_LOG = "one-one.log"
 const val FILE_LOG_D = "one-one-d.log"
 const val FILE_LOG_W = "one-one-w.log"
 const val FILE_LOG_E = "one-one-e.log"
+const val FILE_LOG_I = "one-one-i.log"
 
 const val DEBUG = "OO_LOG_D"
 const val WARNING = "OO_LOG_W"
 const val ERROR = "OO_LOG_E"
+const val INFO = "OO_LOG_I"
 
 private const val DELIMITER = "&"
 
@@ -24,6 +26,7 @@ fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
 		DEBUG -> FILE_LOG_D
 		WARNING -> FILE_LOG_W
 		ERROR -> FILE_LOG_E
+		INFO -> FILE_LOG_I
 		else -> FILE_LOG_D
 	}
 
@@ -47,7 +50,7 @@ fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
 }
 
 fun getMessagesFromLog(context: Context, type: String? = null): Map<String, List<LogModel>?> {
-	val files = getFilesMap(type, context)
+	val files = getFilesMap(context, type)
 
 	val result = mutableMapOf<String, List<LogModel>?>()
 
@@ -71,7 +74,7 @@ fun getMessagesFromLog(context: Context, type: String? = null): Map<String, List
 	return result
 }
 
-fun getFilesMap(type: String?, context: Context): MutableMap<String, File> {
+fun getFilesMap(context: Context, type: String? = null): MutableMap<String, File> {
 	val files = mutableMapOf<String, File>()
 
 	when (type) {
@@ -79,6 +82,7 @@ fun getFilesMap(type: String?, context: Context): MutableMap<String, File> {
 			files[DEBUG] = File(context.cacheDir, FILE_LOG_D)
 			files[WARNING] = File(context.cacheDir, FILE_LOG_W)
 			files[ERROR] = File(context.cacheDir, FILE_LOG_E)
+			files[INFO] = File(context.cacheDir, FILE_LOG_I)
 		}
 		DEBUG -> {
 			files[DEBUG] = File(context.cacheDir, FILE_LOG_D)
@@ -91,6 +95,12 @@ fun getFilesMap(type: String?, context: Context): MutableMap<String, File> {
 		}
 	}
 	return files
+}
+
+fun clear(context: Context) {
+	getFilesMap(context).values.forEach {
+		it.writeText("")
+	}
 }
 
 fun createLogModel(type: String, tag: String, messageB64: String): LogModel {
