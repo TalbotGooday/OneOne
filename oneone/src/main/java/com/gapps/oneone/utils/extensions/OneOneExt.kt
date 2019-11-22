@@ -11,3 +11,7 @@ fun Throwable.printOneOne(tag: String? = null) {
 
 	OneOne.e(tag ?: OneOne.DEFAULT_TAG, sw.toString())
 }
+
+fun Any?.logDOneOne(tag: String? = null){
+	OneOne.d(tag ?: OneOne.DEFAULT_TAG, this?.toString())
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimaryLog">#E6232A32</color>
-	<color name="colorPrimaryDark">#E6232A32</color>
+	<color name="colorPrimaryLog">#232A32</color>
+	<color name="colorPrimaryDarkLog">#FF21272C</color>
 	<color name="colorAccent">#E6232A32</color>
 	<color name="colorFakeProgressProgress">#E6232A32</color>
 
@@ -9,4 +9,8 @@
 	<color name="colorErrors">#fd4440</color>
 	<color name="colorInfo">#FDB840</color>
 	<color name="colorWarnings">#feda20</color>
+
+	<color name="grey_800">#424242</color>
+	<color name="dividerColor">#2A3239</color>
+
 </resources>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:background="@color/colorPrimaryLog"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimaryDarkLog">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="55dp"
+			android:fontFamily="@font/ps_medium"
+			android:gravity="center"
+			android:text="@string/logger_title"
+			android:textColor="@android:color/white"
+			android:textSize="18sp" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/more"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|end"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_baseline_more_vert" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/back"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|start"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_arrow" />
+	</FrameLayout>
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:id="@+id/log_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="?selectableItemBackground"
+				android:gravity="center"
+				android:orientation="horizontal"
+				android:paddingTop="20dp"
+				android:paddingBottom="20dp">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/log_icon"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginStart="20dp"
+					android:layout_marginEnd="15dp"
+					app:srcCompat="@drawable/ic_console"
+					android:tint="@android:color/white"/>
+
+				<TextView
+					style="@style/ItemMenuText"
+					android:id="@+id/log_message"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/log" />
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginEnd="8dp"
+					app:srcCompat="@drawable/ic_arrow_right" />
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/shared_prefs_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="?selectableItemBackground"
+				android:gravity="center"
+				android:orientation="horizontal"
+				android:paddingTop="20dp"
+				android:paddingBottom="20dp">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/shared_prefs_icon"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginStart="20dp"
+					android:layout_marginEnd="15dp"
+					app:srcCompat="@drawable/ic_file"
+					android:tint="@android:color/white"/>
+
+				<TextView
+					style="@style/ItemMenuText"
+					android:id="@+id/shared_prefs_message"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/shared_prefs" />
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/shared_prefs_next"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginEnd="8dp"
+					app:srcCompat="@drawable/ic_arrow_right" />
+
+			</LinearLayout>
+		</LinearLayout>
+	</androidx.core.widget.NestedScrollView>
+</LinearLayout>

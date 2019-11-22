@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_gravity="bottom"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:id="@+id/header"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/bg_wallet_top_view_header"
+		android:minHeight="55dp">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/spacing_large"
+				android:layout_weight="1"
+				android:ellipsize="end"
+				android:fontFamily="@font/ps_medium"
+				android:maxLines="3"
+				android:textColor="@color/grey_800"
+				android:textSize="14sp"
+				tools:text="Latin only" />
+
+			<LinearLayout
+				android:id="@+id/additional_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginEnd="@dimen/spacing_large"
+				android:background="@drawable/bg_btn_gray"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:padding="@dimen/spacing_medium"
+				android:visibility="gone"
+				tools:visibility="visible">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/additional_button_icon"
+					android:layout_width="18dp"
+					android:layout_height="18dp"
+					android:tint="#9C9890"
+					android:layout_marginStart="@dimen/spacing_medium"
+					app:srcCompat="@drawable/ic_add" />
+
+				<TextView
+					android:id="@+id/additional_button_text"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="@dimen/spacing_medium"
+					android:layout_marginEnd="@dimen/spacing_medium"
+					android:fontFamily="@font/ps_light"
+					android:text="Make a copy"
+					android:textColor="@color/grey_800"
+					android:textSize="12sp" />
+			</LinearLayout>
+		</LinearLayout>
+
+		<View
+			android:id="@+id/divider_top"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:layout_gravity="bottom"
+			android:background="@drawable/divider_horizontal_full" />
+
+	</FrameLayout>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:id="@+id/menu_container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/menu_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:orientation="vertical"
+			tools:itemCount="5"
+			tools:listitem="@layout/item_bottom_menu_small" />
+
+		<LinearLayout
+			android:id="@+id/close_container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<View
+				android:id="@+id/divider"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginStart="20dp"
+				android:layout_marginEnd="20dp"
+				android:background="@drawable/divider_horizontal_full" />
+
+			<TextView
+				android:id="@+id/btn_close"
+				android:layout_width="match_parent"
+				android:layout_height="45dp"
+				android:background="?selectableItemBackground"
+				android:fontFamily="@font/ps_bold"
+				android:gravity="center"
+				android:text="Close"
+				android:textColor="@color/grey_800" />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="?selectableItemBackground"
+	android:gravity="center"
+	android:orientation="horizontal"
+	android:padding="20dp"
+	tools:background="@color/colorPrimaryLog">
+
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/key_text"
+			android:fontFamily="@font/ps_medium"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:textSize="14sp"
+			android:textColor="@android:color/white"
+			tools:text="Tag tag"/>
+
+		<TextView
+			android:id="@+id/value_text"
+			android:fontFamily="@font/ps_regular"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/spacing_medium"
+			android:layout_weight="1"
+			android:textSize="14sp"
+			android:textColor="@android:color/white"
+			tools:text="message" />
+	</LinearLayout>
+
+	<TextView
+		android:layout_marginStart="@dimen/spacing_medium"
+		android:id="@+id/type_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="12sp"
+		android:alpha=".6"
+		android:fontFamily="@font/ps_light"
+		android:textColor="@android:color/white"
+		tools:text="Tag tag" />
+
+</LinearLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/colorPrimaryLog"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimaryDarkLog">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/log_indicator"
+				android:layout_width="10dp"
+				android:layout_height="10dp"
+				app:srcCompat="@drawable/child_indicator" />
+
+			<TextView
+				android:id="@+id/toolbar_title"
+				style="@style/ToolbarText"
+				android:layout_width="wrap_content"
+				android:layout_height="55dp"
+				android:layout_marginStart="8dp"
+				android:text="@string/log" />
+		</LinearLayout>
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/more"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|end"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_baseline_more_vert" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/back"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|start"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_arrow" />
+	</FrameLayout>
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="15dp">
+
+			<LinearLayout
+				android:id="@+id/tag_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="15dp"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/tag_title"
+					style="@style/SettingsTitle.Bold"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:maxLines="1"
+					android:text="@string/tag" />
+
+				<TextView
+					android:id="@+id/tag_text"
+					style="@style/SettingsSubtitle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					tools:text="some tag" />
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/type_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="15dp"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/type_title"
+					style="@style/SettingsTitle.Bold"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:maxLines="1"
+					android:text="@string/type" />
+
+				<TextView
+					android:id="@+id/type_text"
+					style="@style/SettingsSubtitle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					tools:text="some type" />
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/time_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="15dp"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/time_title"
+					style="@style/SettingsTitle.Bold"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:maxLines="1"
+					android:text="@string/time" />
+
+				<TextView
+					android:id="@+id/time_text"
+					style="@style/SettingsSubtitle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					tools:text="some time" />
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/message_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/message_title"
+					style="@style/SettingsTitle.Bold"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:maxLines="1"
+					android:text="@string/log_message" />
+
+				<TextView
+					android:id="@+id/message_text"
+					style="@style/SettingsSubtitle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					tools:text="some type" />
+
+			</LinearLayout>
+		</LinearLayout>
+	</androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -5,10 +5,12 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import android.os.Build
-import com.gapps.oneone.BuildConfig
+import com.gapps.oneone.R
+import com.gapps.oneone.utils.extensions.getAppInfoString
 import java.io.File
 
-fun sendEmail(context: Context, email: String, type: String? = null) {
+
+fun sendEmail(context: Context, email: String? = null, type: String? = null) {
 	val filesNames = mutableListOf<String>()
 
 	when (type) {
@@ -17,6 +19,7 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 			filesNames.add(FILE_LOG_W)
 			filesNames.add(FILE_LOG_E)
 			filesNames.add(FILE_LOG_I)
+			filesNames.add(FILE_LOG_V)
 		}
 		DEBUG -> {
 			filesNames.add(FILE_LOG_D)
@@ -30,15 +33,18 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 		INFO -> {
 			filesNames.add(FILE_LOG_I)
 		}
+		VERBOSE -> {
+			filesNames.add(FILE_LOG_V)
+		}
 	}
 
 	val filesUri = mutableListOf<Uri>()
 
 	filesNames.forEach {
-		val file = File(context.cacheDir, it)
+		val file = File(context.cacheDir, getLogFilePath(it))
 
 		if (file.exists()) {
-			val fileExt = File(context.externalCacheDir, it)
+			val fileExt = File(context.externalCacheDir, getLogFilePath(it))
 
 			file.copyTo(fileExt, true)
 
@@ -50,15 +56,17 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 
 	emailIntent.type = "vnd.android.cursor.dir/email"
 
-	val to = arrayOf(email)
+	email?.let {
+		val to = arrayOf(it)
 
-	emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
+		emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
+	}
 
 	emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, ArrayList(filesUri))
 
 	emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Log info")
 
-	emailIntent.putExtra(Intent.EXTRA_TEXT, getAppInfo())
+	emailIntent.putExtra(Intent.EXTRA_TEXT, context.getAppInfoString())
 
 	if (emailIntent.resolveActivity(context.packageManager) != null) {
 		context.startActivity(Intent.createChooser(emailIntent, "Send email...")
@@ -68,13 +76,20 @@ fun sendEmail(context: Context, email: String, type: String? = null) {
 	}
 }
 
-fun getAppInfo(): String {
-	val dataBuilder = StringBuilder().apply {
-		append("Version Name: ").append(BuildConfig.VERSION_NAME).append("\n")
-		append("Version Code: ").append(BuildConfig.VERSION_CODE).append("\n")
-		append("Android Version: ").append(Build.VERSION.RELEASE).append("\n")
-		append("Phone: ").append(Build.MANUFACTURER).append(" ").append(Build.MODEL).append("\n")
-	}
+fun Context.sendTo(uri: Uri? = null, text: String? = null, type: String = "text/*") {
 
-	return dataBuilder.toString()
+	val sendIntent = Intent(Intent.ACTION_SEND)
+	sendIntent.type = type
+	text?.run { sendIntent.putExtra(Intent.EXTRA_TEXT, text) }
+	uri?.run { sendIntent.putExtra(Intent.EXTRA_STREAM, this) }
+	val title = resources.getString(R.string.send_intent_title)
+	val chooser = Intent.createChooser(sendIntent, title)
+
+	if (sendIntent.resolveActivity(this.packageManager) != null) {
+		startActivity(Intent.createChooser(chooser, title)
+				.apply {
+					addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+				}, null)
+	}
 }
+

@@ -1,0 +1,20 @@
+package com.gapps.oneone.screens.menu.core
+
+import android.content.Context
+import com.gapps.oneone.screens.menu.core.MenuContract
+
+class MenuPresenter : MenuContract.Presenter {
+	override lateinit var view: MenuContract.View
+	private lateinit var context: Context
+
+	override fun create(context: Context) {
+		this.context = context
+
+		if (context is MenuContract.View) {
+			this.view = context
+		}
+	}
+
+	override fun destroy() {
+	}
+}

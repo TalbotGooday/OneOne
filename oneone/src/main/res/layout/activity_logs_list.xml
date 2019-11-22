@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/colorPrimaryLog"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorPrimaryDarkLog">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="55dp"
+			android:fontFamily="@font/ps_medium"
+			android:gravity="center"
+			android:text="@string/log"
+			android:textColor="@android:color/white"
+			android:textSize="18sp" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/more"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|end"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_baseline_more_vert" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/back"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|start"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_arrow" />
+	</FrameLayout>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/logs_list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:listitem="@layout/item_log_category" />
+</LinearLayout>

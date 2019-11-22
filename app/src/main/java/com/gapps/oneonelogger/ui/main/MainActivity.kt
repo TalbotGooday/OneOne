@@ -1,16 +1,14 @@
 package com.gapps.oneonelogger.ui.main
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.gapps.oneone.OneOne
 import com.gapps.oneonelogger.R
-import com.gapps.oneone.log.LogActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,12 +17,12 @@ class MainActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_main)
 		setSupportActionBar(toolbar)
 
-		OneOne.d("MainActivity", message = "Started MainActivity")
+		val sp = this.getSharedPreferences("test_sp_main", Context.MODE_PRIVATE)
+		sp.edit().putString("test", "test").apply()
 
-		fab.setOnClickListener { view ->
+		fab.setOnClickListener {
 			OneOne.d("MainActivity", "send letter")
 			OneOne.sendLog("alexey.mostovoy.w@gmail.com")
-
 		}
 	}
 
@@ -41,7 +39,8 @@ class MainActivity : AppCompatActivity() {
 		return when (item.itemId) {
 			R.id.action_see_log -> {
 				OneOne.w("MainActivity","action_see_log")
-				startActivity(Intent(this, LogActivity::class.java))
+//				startActivity(Intent(this, LogActivity::class.java))
+				OneOne.openLog(this)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
