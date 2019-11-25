@@ -33,6 +33,7 @@
 		<activity-alias
 			android:name="OneOne"
 			android:icon="@drawable/ic_bug_report"
+			android:enabled="@bool/one_one_add_launcher_icon"
 			android:label="@string/logger_title"
 			android:targetActivity=".screens.menu.MenuActivity"
 			android:taskAffinity="com.gapps.oneone.${applicationId}"

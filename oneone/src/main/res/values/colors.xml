@@ -12,5 +12,6 @@
 
 	<color name="grey_800">#424242</color>
 	<color name="dividerColor">#2A3239</color>
+	<color name="dividerColor1">#5A8898</color>
 
 </resources>
