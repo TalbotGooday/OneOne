@@ -1,17 +1,17 @@
-package com.gapps.oneone.screens.shared_prefs.sp_files_list.adapters
+package com.gapps.oneone.screens.log.log_files.adapters
 
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
-import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
+import com.gapps.oneone.models.log.FileModel
 import kotlinx.android.synthetic.main.item_file.view.*
 
 
-class SharedPrefsAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefsAdapter.Holder>() {
+class LogFilesListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogFilesListAdapter.Holder>() {
 
-	private var data: MutableList<SharedPrefsFileModel> = mutableListOf()
+	private var data: MutableList<FileModel> = mutableListOf()
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 		return Holder(
@@ -24,19 +24,19 @@ class SharedPrefsAdapter(private val listener: Listener) : RecyclerView.Adapter<
 
 	override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(data[position], listener)
 
-	fun swapData(data: List<SharedPrefsFileModel>) {
+	fun swapData(data: List<FileModel>) {
 		this.data.clear()
 		this.data.addAll(data)
 		notifyDataSetChanged()
 	}
 
-	fun addData(data: List<SharedPrefsFileModel>) {
+	fun addData(data: List<FileModel>) {
 		this.data.addAll(data)
 		notifyDataSetChanged()
 	}
 
 	class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(item: SharedPrefsFileModel, listener: Listener) = with(itemView) {
+		fun bind(item: FileModel, listener: Listener) = with(itemView) {
 			file_name.text = item.name
 
 			setOnClickListener {
@@ -46,6 +46,6 @@ class SharedPrefsAdapter(private val listener: Listener) : RecyclerView.Adapter<
 	}
 
 	interface Listener {
-		fun onItemClick(item: SharedPrefsFileModel)
+		fun onItemClick(item: FileModel)
 	}
 }

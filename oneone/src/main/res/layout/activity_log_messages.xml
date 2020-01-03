@@ -27,12 +27,12 @@
 				app:srcCompat="@drawable/child_indicator" />
 
 			<TextView
-				style="@style/ToolbarText"
 				android:id="@+id/toolbar_title"
+				style="@style/ToolbarText"
 				android:layout_width="wrap_content"
 				android:layout_height="55dp"
 				android:layout_marginStart="8dp"
-				android:text="@string/log"/>
+				android:text="@string/log" />
 		</LinearLayout>
 
 		<androidx.appcompat.widget.AppCompatImageButton
@@ -46,10 +46,45 @@
 
 	</FrameLayout>
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/log_list"
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:listitem="@layout/item_log" />
+		android:layout_height="match_parent">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/log_list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:listitem="@layout/item_log" />
+
+		<LinearLayout
+			android:id="@+id/messages_placeholder"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:visibility="gone"
+			tools:visibility="visible">
+
+			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/placeholder_icon"
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				app:srcCompat="@drawable/ic_console"
+				tools:tint="@color/white60"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/spacing_middle"
+				android:alpha=".6"
+				android:fontFamily="@font/ps_medium"
+				android:text="@string/no_log_messages"
+				android:textColor="@android:color/white"
+				android:textSize="16sp" />
+
+		</LinearLayout>
+
+	</FrameLayout>
 
 </LinearLayout>

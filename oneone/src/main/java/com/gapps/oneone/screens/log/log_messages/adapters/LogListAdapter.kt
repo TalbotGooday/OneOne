@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gapps.oneone.OneOne.DEFAULT_TAG
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.utils.extensions.toStrDate
+import com.gapps.oneone.utils.extensions.visibleOrGone
 import kotlinx.android.synthetic.main.item_log.view.*
 import java.util.*
 
@@ -41,6 +43,7 @@ class LogListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogL
 
 			message.text = item.message
 			tag_text.text = item.tag
+			tag_text.visibleOrGone(item.tag != DEFAULT_TAG)
 			time_text.text = item.time.toStrDate()
 			setOnClickListener {
 				listener.onItemClick(item)

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.gapps.oneone.models.log.FileModel
 import com.gapps.oneone.models.log.LogFileModel
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.screens.menu.MenuActivity
@@ -25,6 +26,8 @@ object OneOne {
 		this.context = context
 
 		initCrashLogger()
+
+		initLogFilesAndDirs(context)
 	}
 
 	private fun initCrashLogger() {
@@ -104,6 +107,18 @@ object OneOne {
 				this.tag = it.key
 			}
 		}
+	}
+
+	fun getLogFilesList(): List<FileModel> {
+		val ctx = context ?: throw IllegalStateException("Call init() first")
+
+		return getLogFilesList(ctx)
+	}
+
+	fun writeToLogFile(text: String, withAdditionalPhoneInfo: Boolean = false){
+		val ctx = context ?: throw IllegalStateException("Call init() first")
+
+		writeTextToLogFile(ctx, text, withAdditionalPhoneInfo)
 	}
 
 	private fun log(type: String, tag: String? = null, message: Any?) {

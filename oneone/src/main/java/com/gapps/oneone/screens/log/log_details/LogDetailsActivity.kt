@@ -1,20 +1,14 @@
 package com.gapps.oneone.screens.log.log_details
 
-import android.os.Bundle
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-
+import android.os.Bundle
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.screens.base.BaseActivity
-
 import com.gapps.oneone.screens.log.log_details.core.LogDetailsContract
 import com.gapps.oneone.screens.log.log_details.core.LogDetailsPresenter
-import com.gapps.oneone.utils.*
-import com.gapps.oneone.utils.extensions.color
-import com.gapps.oneone.utils.extensions.toStrDate
-import com.gapps.oneone.utils.extensions.visibleOrGone
+import com.gapps.oneone.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_log_details.*
 
 class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
@@ -35,6 +29,11 @@ class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
 		initViews()
 	}
 
+	override fun onDestroy() {
+		super.onDestroy()
+		presenter.destroy()
+	}
+
 	private fun initViews() {
 		back.setOnClickListener { onBackPressed() }
 
@@ -52,29 +51,18 @@ class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
 		type_text.text = type
 		message_text.text = item.message
 		time_text.text = item.time.toStrDate()
+
+		message_container.setOnLongClickListener {
+			copyToClipboard(item.message) {
+				toast(R.string.copied)
+			}
+
+			true
+		}
 	}
 
 	private fun initTypeIndicator(type: String) {
-		val colorRes = when (type) {
-			DEBUG -> {
-				R.color.colorDebug
-			}
-			WARNING -> {
-				R.color.colorWarnings
-			}
-			ERROR -> {
-				R.color.colorErrors
-			}
-			INFO -> {
-				R.color.colorErrors
-			}
-			VERBOSE -> {
-				android.R.color.white
-			}
-			else -> {
-				Color.BLACK
-			}
-		}
+		val colorRes = getLogIndicatorByType(type)
 
 		log_indicator.setColorFilter(color(colorRes))
 	}

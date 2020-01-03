@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.LogFileModel
 import com.gapps.oneone.utils.*
+import com.gapps.oneone.utils.extensions.getLogIndicatorByType
 import kotlinx.android.synthetic.main.item_log_category.view.*
 
 
@@ -44,26 +45,7 @@ class LogsListAdapter(private val listener: Listener) : RecyclerView.Adapter<Log
 		fun bind(item: LogFileModel, listener: Listener) = with(itemView) {
 			message.text = item.name
 
-			val color = when (item.type) {
-				DEBUG -> {
-					R.color.colorDebug
-				}
-				WARNING -> {
-					R.color.colorWarnings
-				}
-				ERROR -> {
-					R.color.colorErrors
-				}
-				INFO -> {
-					R.color.colorErrors
-				}
-				VERBOSE -> {
-					R.color.colorDebug
-				}
-				else -> {
-					Color.BLACK
-				}
-			}
+			val color = getLogIndicatorByType(item.type)
 
 			val indicator = ContextCompat.getDrawable(itemView.context, R.drawable.child_indicator)?.apply {
 				colorFilter = PorterDuffColorFilter(ContextCompat.getColor(itemView.context, color), PorterDuff.Mode.SRC_IN)

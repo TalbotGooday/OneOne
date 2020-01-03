@@ -9,6 +9,8 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.core.graphics.ColorUtils
+import com.gapps.oneone.R
+import com.gapps.oneone.utils.*
 
 
 /** Google definition: alpha = 1.0f  */
@@ -60,5 +62,28 @@ fun Float.toColorAlpha(): Int{
 fun Int.toColorDrawable(@Px size: Int): ColorDrawable{
 	return ColorDrawable(this).apply {
 		setBounds(0, 0, size, size)
+	}
+}
+
+fun getLogIndicatorByType(type: String): Int {
+	return when (type) {
+		DEBUG -> {
+			R.color.colorDebug
+		}
+		WARNING -> {
+			R.color.colorWarnings
+		}
+		ERROR -> {
+			R.color.colorErrors
+		}
+		INFO -> {
+			R.color.colorInfo
+		}
+		VERBOSE -> {
+			android.R.color.white
+		}
+		else -> {
+			Color.BLACK
+		}
 	}
 }

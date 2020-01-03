@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import com.gapps.oneone.R
 import com.gapps.oneone.screens.base.BaseActivity
+import com.gapps.oneone.screens.log.log_files.LogFilesListActivity
 import com.gapps.oneone.screens.log.logs_list.LogsListActivity
 import com.gapps.oneone.screens.menu.core.MenuContract
 import com.gapps.oneone.screens.menu.core.MenuPresenter
@@ -33,11 +34,17 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 		initViews()
 	}
 
+	override fun onDestroy() {
+		super.onDestroy()
+		presenter.destroy()
+	}
+
 	private fun initViews() {
 		back.setOnClickListener { onBackPressed() }
 		more.setOnClickListener { showMenu() }
 
 		log_container.setOnClickListener { openLogs() }
+		log_files_container.setOnClickListener { openLogFiles() }
 		shared_prefs_container.setOnClickListener { openSharedPreferences() }
 	}
 
@@ -113,6 +120,10 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 
 	private fun openLogs() {
 		startActivity(LogsListActivity.newInstance(this))
+	}
+
+	private fun openLogFiles() {
+		startActivity(LogFilesListActivity.newInstance(this))
 	}
 
 	private fun openSharedPreferences() {

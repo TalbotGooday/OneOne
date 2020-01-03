@@ -47,6 +47,11 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 		initViews()
 	}
 
+	override fun onDestroy() {
+		super.onDestroy()
+		presenter.destroy()
+	}
+
 	private fun initViews() {
 		toolbar_title.text = fileName
 		back.setOnClickListener { onBackPressed() }

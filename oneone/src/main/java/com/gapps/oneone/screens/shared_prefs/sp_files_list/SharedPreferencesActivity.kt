@@ -36,6 +36,11 @@ class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View
 		initViews()
 	}
 
+	override fun onDestroy() {
+		super.onDestroy()
+		presenter.destroy()
+	}
+
 	private fun initViews() {
 		back.setOnClickListener { onBackPressed() }
 		more.setOnClickListener { showMenu() }

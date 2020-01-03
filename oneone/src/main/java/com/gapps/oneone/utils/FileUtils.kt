@@ -2,14 +2,20 @@ package com.gapps.oneone.utils
 
 import android.content.Context
 import android.util.Base64
+import com.gapps.oneone.models.log.FileModel
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
+import com.gapps.oneone.utils.extensions.getAppInfoString
+import com.gapps.oneone.utils.time.FastDateFormat
 import com.google.gson.Gson
+import kotlinx.coroutines.*
 import java.io.File
 import java.nio.charset.Charset
+import java.util.*
 
 
-const val FOLDER_LOG = "one_one"
+const val FOLDER_ONE_ONE = "one_one"
+const val FOLDER_LOG = "log"
 const val FILE_LOG = "one-one.log"
 const val FILE_LOG_D = "one-one-d.log"
 const val FILE_LOG_W = "one-one-w.log"
@@ -23,7 +29,15 @@ const val ERROR = "OO_LOG_E"
 const val INFO = "OO_LOG_I"
 const val VERBOSE = "OO_LOG_V"
 
-fun getLogFilePath(fileName: String) = "$FOLDER_LOG/$fileName"
+fun initLogFilesAndDirs(context: Context){
+	val oneOneFolder = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
+
+	if(oneOneFolder.exists().not()){
+		oneOneFolder.mkdirs()
+	}
+}
+
+fun getLogFilePath(fileName: String) = "$FOLDER_ONE_ONE/$fileName"
 
 fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
 
@@ -54,6 +68,10 @@ fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
 		}
 
 		val messageB64 = Base64.encodeToString(gson.toJson(logModel).toByteArray(), Base64.NO_WRAP)
+
+		if (file.exists().not()) {
+			file.createNewFile()
+		}
 
 		file.appendText(messageB64)
 		file.appendText("\n")
@@ -99,22 +117,36 @@ fun getFilesMap(context: Context, type: String? = null): MutableMap<String, File
 			files[VERBOSE] = File(context.cacheDir, getLogFilePath(FILE_LOG_V))
 		}
 		DEBUG -> {
-			files[DEBUG] = File(context.cacheDir,  getLogFilePath(FILE_LOG_D))
+			files[DEBUG] = File(context.cacheDir, getLogFilePath(FILE_LOG_D))
 		}
 		WARNING -> {
-			files[WARNING] = File(context.cacheDir,  getLogFilePath(FILE_LOG_W))
+			files[WARNING] = File(context.cacheDir, getLogFilePath(FILE_LOG_W))
 		}
 		ERROR -> {
-			files[ERROR] = File(context.cacheDir,  getLogFilePath(FILE_LOG_E))
+			files[ERROR] = File(context.cacheDir, getLogFilePath(FILE_LOG_E))
 		}
 		INFO -> {
-			files[INFO] = File(context.cacheDir,  getLogFilePath(FILE_LOG_I))
+			files[INFO] = File(context.cacheDir, getLogFilePath(FILE_LOG_I))
 		}
 		VERBOSE -> {
-			files[VERBOSE] = File(context.cacheDir,  getLogFilePath(FILE_LOG_V))
+			files[VERBOSE] = File(context.cacheDir, getLogFilePath(FILE_LOG_V))
 		}
 	}
 	return files
+}
+
+fun getLogFilesList(context: Context): List<FileModel> {
+	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
+	if (logDir.exists().not() || logDir.isDirectory.not()) {
+		return emptyList()
+	}
+
+	return logDir.list()?.mapNotNull {
+		FileModel().apply {
+			this.name = it
+			this.path = "${logDir.path}/$it"
+		}
+	} ?: emptyList()
 }
 
 fun clear(context: Context) {
@@ -146,5 +178,32 @@ fun Context.getAllSharedPreferences(): List<SharedPrefsFileModel> {
 		} ?: emptyList()
 	} else {
 		emptyList()
+	}
+}
+
+fun writeTextToLogFile(context: Context, text: String, withAdditionalPhoneInfo: Boolean = false) {
+	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
+
+	if (logDir.exists().not()) {
+		logDir.mkdir()
+	}
+
+	val fileName = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH).format(System.currentTimeMillis())
+	val logFile = File(logDir, "$fileName.log")
+
+	if (logFile.exists().not()) {
+		logFile.createNewFile()
+	}
+
+	if (withAdditionalPhoneInfo) {
+		val phoneInfo = context.getAppInfoString()
+
+		logFile.writeText("$phoneInfo\n ---------------------- \n")
+	}
+
+	if (logFile.exists()) {
+		logFile.appendText(text)
+	} else {
+		logFile.writeText(text)
 	}
 }

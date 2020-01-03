@@ -1,4 +1,4 @@
-package com.gapps.oneone.screens.log.logs_list
+package com.gapps.oneone.screens.log.log_files
 
 import android.content.Context
 import android.content.Intent
@@ -7,31 +7,33 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gapps.oneone.OneOne
 import com.gapps.oneone.R
-import com.gapps.oneone.models.log.LogFileModel
+import com.gapps.oneone.models.log.FileModel
 import com.gapps.oneone.screens.base.BaseActivity
-import com.gapps.oneone.screens.log.log_messages.LogMessagesActivity
-import com.gapps.oneone.screens.log.logs_list.adapters.LogsListAdapter
-import com.gapps.oneone.screens.log.logs_list.core.LogsListContract
-import com.gapps.oneone.screens.log.logs_list.core.LogsListPresenter
+import com.gapps.oneone.screens.log.log_file.LogFileActivity
+import com.gapps.oneone.screens.log.log_files.adapters.LogFilesListAdapter
+import com.gapps.oneone.screens.log.log_files.core.LogFilesListContract
+import com.gapps.oneone.screens.log.log_files.core.LogFilesListPresenter
 import com.gapps.oneone.utils.bottom_menu.BottomMenu
 import com.gapps.oneone.utils.bottom_menu.MenuData
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
-import com.gapps.oneone.utils.extensions.*
-import kotlinx.android.synthetic.main.activity_logs_list.*
+import com.gapps.oneone.utils.extensions.addDivider
+import com.gapps.oneone.utils.extensions.color
+import com.gapps.oneone.utils.extensions.toColorDrawable
+import kotlinx.android.synthetic.main.activity_log_files_list.*
 
-class LogsListActivity : BaseActivity(), LogsListContract.View {
+class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 	companion object {
 		const val SEND_REPORT = 0
 		const val CLEAR_ALL_DATA = 1
 
-		fun newInstance(context: Context) = Intent(context, LogsListActivity::class.java)
+		fun newInstance(context: Context) = Intent(context, LogFilesListActivity::class.java)
 	}
 
-	override var presenter = LogsListPresenter()
+	override var presenter = LogFilesListPresenter()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_logs_list)
+		setContentView(R.layout.activity_log_files_list)
 
 		presenter.create(this)
 
@@ -48,21 +50,21 @@ class LogsListActivity : BaseActivity(), LogsListContract.View {
 		more.setOnClickListener { showMenu() }
 
 		logs_list.apply {
-			layoutManager = LinearLayoutManager(this@LogsListActivity)
-			adapter = LogsListAdapter(object : LogsListAdapter.Listener {
-				override fun onItemClick(item: LogFileModel) {
-					openLogScreen(item)
+			layoutManager = LinearLayoutManager(this@LogFilesListActivity)
+			adapter = LogFilesListAdapter(object : LogFilesListAdapter.Listener {
+				override fun onItemClick(item: FileModel) {
+					openLogFileScreen(item)
 				}
 			}).apply {
-				swapData(presenter.getLogsList())
+				swapData(presenter.getLogFilesList())
 			}
 
 			addDivider(color(R.color.dividerColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset))
 		}
 	}
 
-	private fun openLogScreen(item: LogFileModel) {
-		startActivity(LogMessagesActivity.newInstance(this, item))
+	private fun openLogFileScreen(item: FileModel) {
+		startActivity(LogFileActivity.newInstance(this, item))
 	}
 
 	private fun showMenu() {
@@ -73,7 +75,7 @@ class LogsListActivity : BaseActivity(), LogsListContract.View {
 		}
 
 		BottomMenu.build {
-			with(this@LogsListActivity)
+			with(this@LogFilesListActivity)
 			withBackgroundColor(color(R.color.colorPrimaryLog))
 			withMainColor(color(R.color.colorPrimaryDarkLog))
 			withAccentColor(Color.WHITE)

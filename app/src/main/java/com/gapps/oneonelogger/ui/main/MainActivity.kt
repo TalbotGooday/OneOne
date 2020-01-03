@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.gapps.oneone.OneOne
+import com.gapps.oneone.utils.extensions.printOneOneLog
 import com.gapps.oneonelogger.R
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 			OneOne.d("MainActivity", "send letter")
 			OneOne.sendLog("alexey.mostovoy.w@gmail.com")
 		}
+
+		OneOne.i("MainActivity", "MainActivity opened")
+
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -41,6 +47,15 @@ class MainActivity : AppCompatActivity() {
 				OneOne.w("MainActivity","action_see_log")
 //				startActivity(Intent(this, LogActivity::class.java))
 				OneOne.openLog(this)
+				true
+			}
+			R.id.action_write_log ->{
+				try {
+					File(cacheDir, "asdfasdf/asdf/asdfasdfasdf").writeText("sasdf")
+				}catch (e: Exception){
+					e.printOneOneLog()
+				}
+
 				true
 			}
 			else -> super.onOptionsItemSelected(item)

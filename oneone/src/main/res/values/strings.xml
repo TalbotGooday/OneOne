@@ -2,11 +2,10 @@
 	<string name="app_name">OneOne</string>
 	<string name="logger_title">One-One logger</string>
 	<string name="log">Log</string>
-	<string name="title_activity_logs_list">LogsListActivity</string>
+	<string name="log_files">Log files</string>
 	<string name="dialog_cancel">Cancel</string>
 	<string name="sent_report">Send report</string>
 	<string name="select_action">Select an action</string>
-	<string name="title_activity_log_details">LogDetailsActivity</string>
 	<string name="tag">Tag</string>
 	<string name="type">Type</string>
 	<string name="log_message">Log Message</string>
@@ -27,14 +26,13 @@
 	<string name="verbose">Verbose</string>
 	<string name="clear_all_log_data">Clear all Log data</string>
 	<string name="time">Time</string>
-	<string name="title_activity_menu">MenuActivity</string>
 	<string name="menu">Menu</string>
 	<string name="shared_prefs">Shared Preferences</string>
-	<string name="title_activity_shared_preferences">SharedPreferencesActivity</string>
-	<string name="title_activity_shared_prefs_file">SharedPrefsFileActivity</string>
 	<string name="copy_key">Copy key</string>
 	<string name="copy_value">Copy value</string>
 	<string name="copy_as_pair">Copy as pair</string>
 	<string name="copy_as_json">Copy as Json string</string>
+	<string name="no_log_messages">There are no log messages yet</string>
+	<string name="cant_open_file">Can\'t open file</string>
 
 </resources>

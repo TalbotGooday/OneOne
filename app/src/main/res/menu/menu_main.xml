@@ -7,4 +7,10 @@
 		android:orderInCategory="100"
 		android:title="See log"
 		app:showAsAction="never" />
+
+	<item
+		android:id="@+id/action_write_log"
+		android:orderInCategory="100"
+		android:title="Write log"
+		app:showAsAction="never" />
 </menu>

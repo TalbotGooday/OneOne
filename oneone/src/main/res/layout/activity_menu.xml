@@ -3,7 +3,6 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:background="@color/colorPrimaryLog"
 	android:orientation="vertical">
 
@@ -47,7 +46,9 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical">
+			android:divider="@drawable/divider_horizontal_full"
+			android:orientation="vertical"
+			android:showDividers="middle|end">
 
 			<LinearLayout
 				android:id="@+id/log_container"
@@ -65,16 +66,51 @@
 					android:layout_height="24dp"
 					android:layout_marginStart="20dp"
 					android:layout_marginEnd="15dp"
-					app:srcCompat="@drawable/ic_console"
-					android:tint="@android:color/white"/>
+					android:tint="@android:color/white"
+					app:srcCompat="@drawable/ic_console" />
 
 				<TextView
-					style="@style/ItemMenuText"
 					android:id="@+id/log_message"
+					style="@style/ItemMenuText"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
 					android:text="@string/log" />
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginEnd="8dp"
+					app:srcCompat="@drawable/ic_arrow_right" />
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/log_files_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="?selectableItemBackground"
+				android:gravity="center"
+				android:orientation="horizontal"
+				android:paddingTop="20dp"
+				android:paddingBottom="20dp">
+
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/log_files_icon"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginStart="20dp"
+					android:layout_marginEnd="15dp"
+					android:tint="@android:color/white"
+					app:srcCompat="@drawable/ic_console_file" />
+
+				<TextView
+					android:id="@+id/log_files_message"
+					style="@style/ItemMenuText"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/log_files" />
 
 				<androidx.appcompat.widget.AppCompatImageView
 					android:layout_width="24dp"
@@ -100,12 +136,12 @@
 					android:layout_height="24dp"
 					android:layout_marginStart="20dp"
 					android:layout_marginEnd="15dp"
-					app:srcCompat="@drawable/ic_file"
-					android:tint="@android:color/white"/>
+					android:tint="@android:color/white"
+					app:srcCompat="@drawable/ic_file" />
 
 				<TextView
-					style="@style/ItemMenuText"
 					android:id="@+id/shared_prefs_message"
+					style="@style/ItemMenuText"
 					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
