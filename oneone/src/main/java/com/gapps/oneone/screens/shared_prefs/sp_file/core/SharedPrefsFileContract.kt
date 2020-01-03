@@ -5,10 +5,11 @@ import com.gapps.oneone.screens.base.BaseView
 
 interface SharedPrefsFileContract {
 	interface View : BaseView<Presenter> {
-
+		fun onSpEntryUpdated(key: String, value: String?)
 	}
 
 	interface Presenter : BasePresenter<View> {
+		fun changeSpEntry(type: String, key: String?, value: String?)
 
 	}
 }

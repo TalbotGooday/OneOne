@@ -1,13 +1,12 @@
 package com.gapps.oneone.screens.shared_prefs.sp_file.adapters
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.shared_prefs.SharedPrefEntry
 import kotlinx.android.synthetic.main.item_sp_entry.view.*
-import java.util.*
 
 
 class SharedPrefEntriesAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefEntriesAdapter.Holder>() {
@@ -34,6 +33,20 @@ class SharedPrefEntriesAdapter(private val listener: Listener) : RecyclerView.Ad
 	fun addData(data: List<SharedPrefEntry>) {
 		this.data.addAll(data)
 		notifyDataSetChanged()
+	}
+
+	fun updateByKey(key: String, value: String?) {
+		val position = this.data.indexOfFirst { it.key == key }
+
+		if (position < 0) return
+
+		value?.let {
+			this.data[position] = this.data[position].apply {
+				this.value = it
+			}
+		}
+
+		this.notifyItemChanged(position)
 	}
 
 	class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
 		val sp = this.getSharedPreferences("test_sp_main", Context.MODE_PRIVATE)
 		sp.edit().putString("test", "test").apply()
+		sp.edit().putBoolean("test_bool", false).apply()
+		sp.edit().putBoolean("test_bool1", true).apply()
+		sp.edit().putInt("test_int", 0).apply()
+		sp.edit().putLong("test_long", 1231231231231230).apply()
+		sp.edit().putFloat("test_float", 99.99f).apply()
 
 		fab.setOnClickListener {
 			OneOne.d("MainActivity", "send letter")

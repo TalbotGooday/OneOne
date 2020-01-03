@@ -34,5 +34,7 @@
 	<string name="copy_as_json">Copy as Json string</string>
 	<string name="no_log_messages">There are no log messages yet</string>
 	<string name="cant_open_file">Can\'t open file</string>
+	<string name="edit">Edit</string>
+	<string name="enter_value">Enter a value</string>
 
 </resources>

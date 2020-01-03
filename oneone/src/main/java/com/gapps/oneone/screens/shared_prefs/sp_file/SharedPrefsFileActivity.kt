@@ -15,16 +15,18 @@ import com.gapps.oneone.utils.bottom_menu.BottomMenu
 import com.gapps.oneone.utils.bottom_menu.MenuData
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
+import com.gapps.oneone.utils.views.dialog.SpEditorDialog
 import kotlinx.android.synthetic.main.activity_shared_prefs_file.*
 
 class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 	companion object {
 		private const val FILE_NAME = "file_name"
 
-		private const val MENU_COPY_KEY = 0
-		private const val MENU_COPY_VALUE = 1
-		private const val MENU_COPY_AS_PAIR = 2
-		private const val MENU_COPY_AS_JSON = 3
+		private const val MENU_EDIT = 0
+		private const val MENU_COPY_KEY = 1
+		private const val MENU_COPY_VALUE = 2
+		private const val MENU_COPY_AS_PAIR = 3
+		private const val MENU_COPY_AS_JSON = 4
 
 		private const val MENU_SHARE_FILE = 0
 		fun newInstance(context: Context, fileName: String) = Intent(context, SharedPrefsFileActivity::class.java).apply {
@@ -45,6 +47,10 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 		fileName = intent.getStringExtra(FILE_NAME) ?: ""
 
 		initViews()
+	}
+
+	override fun onSpEntryUpdated(key: String, value: String?) {
+		(entries_list.adapter as SharedPrefEntriesAdapter).updateByKey(key, value)
 	}
 
 	override fun onDestroy() {
@@ -74,6 +80,7 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 	private fun showEntryMenu(item: SharedPrefEntry) {
 		val menu = MenuData().apply {
 			this.title = item.key
+			addMenu(R.drawable.ic_edit, R.string.edit, MENU_EDIT)
 			addMenu(R.drawable.ic_content_copy, R.string.copy_key, MENU_COPY_KEY)
 			addMenu(R.drawable.ic_content_copy, R.string.copy_value, MENU_COPY_VALUE)
 			addMenu(R.drawable.ic_content_copy, R.string.copy_as_pair, MENU_COPY_AS_PAIR)
@@ -94,6 +101,9 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 		return object : BottomMenu.Listener {
 			override fun onItemSelected(index: Int, item: MenuDataItem) {
 				when (index) {
+					MENU_EDIT -> {
+						editEntry(entry)
+					}
 					MENU_COPY_KEY -> {
 						copy(entry.key)
 					}
@@ -115,6 +125,24 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 			override fun onAdditionalClick() {
 			}
 		}
+	}
+
+	private fun editEntry(entry: SharedPrefEntry) {
+		SpEditorDialog(
+				this,
+				entry.key,
+				entry.type,
+				entry.value,
+				getString(android.R.string.ok),
+				getString(android.R.string.cancel),
+				::onEntryChangeRequested
+		).show()
+	}
+
+	private fun onEntryChangeRequested(type: String?, key: String?, value: String?) {
+		type ?: return
+
+		presenter.changeSpEntry(type, key, value)
 	}
 
 	private fun copy(value: String) {
