@@ -25,6 +25,11 @@
 	<string name="info">Info</string>
 	<string name="verbose">Verbose</string>
 	<string name="clear_all_log_data">Clear all Log data</string>
+	<string name="clear_all_log_files_data">Clear all Log Files data</string>
+	<string name="delete">Delete</string>
+	<string name="clear_all_messages">Clear all messages</string>
+	<string name="share_text">Share text</string>
+	<string name="share_file">Share file</string>
 	<string name="time">Time</string>
 	<string name="menu">Menu</string>
 	<string name="shared_prefs">Shared Preferences</string>
@@ -33,6 +38,8 @@
 	<string name="copy_as_pair">Copy as pair</string>
 	<string name="copy_as_json">Copy as Json string</string>
 	<string name="no_log_messages">There are no log messages yet</string>
+	<string name="no_sp_files">There are no\nShared Preferences files yet</string>
+	<string name="no_log_files">There are no log files yet</string>
 	<string name="cant_open_file">Can\'t open file</string>
 	<string name="edit">Edit</string>
 	<string name="enter_value">Enter a value</string>

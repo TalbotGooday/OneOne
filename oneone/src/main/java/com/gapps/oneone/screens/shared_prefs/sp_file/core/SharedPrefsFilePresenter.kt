@@ -3,9 +3,10 @@ package com.gapps.oneone.screens.shared_prefs.sp_file.core
 import android.content.Context
 import android.content.SharedPreferences
 import com.gapps.oneone.models.shared_prefs.SharedPrefEntry
+import com.gapps.oneone.screens.base.BaseAPresenter
 import java.util.*
 
-class SharedPrefsFilePresenter : SharedPrefsFileContract.Presenter {
+class SharedPrefsFilePresenter : SharedPrefsFileContract.Presenter, BaseAPresenter() {
 	override lateinit var view: SharedPrefsFileContract.View
 	private lateinit var context: Context
 

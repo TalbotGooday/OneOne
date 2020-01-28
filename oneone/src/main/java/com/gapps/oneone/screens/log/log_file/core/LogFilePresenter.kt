@@ -1,17 +1,20 @@
 package com.gapps.oneone.screens.log.log_file.core
 
 import android.content.Context
-import kotlinx.coroutines.*
+import android.net.Uri
+import com.gapps.oneone.OneOne
+import com.gapps.oneone.screens.base.BaseAPresenter
+import com.gapps.oneone.utils.copyFileToExternalCache
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
-import kotlin.coroutines.CoroutineContext
 
-class LogFilePresenter : LogFileContract.Presenter, CoroutineScope {
+class LogFilePresenter : LogFileContract.Presenter, BaseAPresenter() {
 	override lateinit var view: LogFileContract.View
 	private lateinit var context: Context
-	private val job = Job()
 
-	override val coroutineContext: CoroutineContext
-		get() = job + Dispatchers.Main
+	private var logFile: File? = null
 
 	override fun create(context: Context) {
 		this.context = context
@@ -23,6 +26,8 @@ class LogFilePresenter : LogFileContract.Presenter, CoroutineScope {
 
 	override fun openFile(path: String) {
 		val file = File(path)
+		this.logFile = file
+
 		if (file.exists().not()) {
 			view.onFileLoadError()
 			return
@@ -36,6 +41,29 @@ class LogFilePresenter : LogFileContract.Presenter, CoroutineScope {
 			view.onFileLoadSuccess(fileText)
 		}
 	}
+
+	override fun deleteLogFile(name: String) {
+		launch {
+			withContext(Dispatchers.IO) {
+				OneOne.deleteLogFile(name)
+			}
+
+			view.onLogFileDeleted(name)
+		}
+	}
+
+	override fun prepareLogFileToSend() {
+		launch {
+			val uri = withContext(Dispatchers.IO){
+				val file = logFile?.copyFileToExternalCache(context) ?: return@withContext null
+
+				Uri.fromFile(file)
+			}
+
+			view.onLogFilePreparedToSend(uri)
+		}
+	}
+
 
 	override fun destroy() {
 	}

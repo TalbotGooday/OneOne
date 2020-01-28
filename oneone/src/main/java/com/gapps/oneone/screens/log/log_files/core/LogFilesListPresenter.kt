@@ -2,20 +2,13 @@ package com.gapps.oneone.screens.log.log_files.core
 
 import android.content.Context
 import com.gapps.oneone.OneOne
-import com.gapps.oneone.models.log.FileModel
-import com.gapps.oneone.models.log.LogFileModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import com.gapps.oneone.screens.base.BaseAPresenter
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class LogFilesListPresenter : LogFilesListContract.Presenter, CoroutineScope {
+class LogFilesListPresenter : LogFilesListContract.Presenter, BaseAPresenter() {
 	override lateinit var view: LogFilesListContract.View
 	private lateinit var context: Context
-	private val job = Job()
-
-	override val coroutineContext: CoroutineContext
-		get() = job + Dispatchers.Main
 
 	override fun create(context: Context) {
 		this.context = context
@@ -25,8 +18,18 @@ class LogFilesListPresenter : LogFilesListContract.Presenter, CoroutineScope {
 		}
 	}
 
-	override fun getLogFilesList(): List<FileModel> {
-		return OneOne.getLogFilesList()
+	override fun getLogFilesList() {
+		view.onGotLogFilesList(OneOne.getLogFilesList())
+	}
+
+	override fun clearAllLogFiles() {
+		launch {
+			withContext(Dispatchers.IO) {
+				OneOne.clearAllLogFiles()
+			}
+
+			view.onLogFilesDeleted()
+		}
 	}
 
 	override fun destroy() {

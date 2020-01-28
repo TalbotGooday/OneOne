@@ -2,16 +2,15 @@ package com.gapps.oneone.screens.log.log_messages.core
 
 import android.content.Context
 import com.gapps.oneone.OneOne
-import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
+import com.gapps.oneone.screens.base.BaseAPresenter
+import com.gapps.oneone.utils.clearLogMessages
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class LogMessagesPresenter : LogMessagesContract.Presenter, CoroutineScope {
+class LogMessagesPresenter : LogMessagesContract.Presenter, BaseAPresenter() {
 	override lateinit var view: LogMessagesContract.View
 	private lateinit var context: Context
-	private val job = Job()
-
-	override val coroutineContext: CoroutineContext
-		get() = job + Dispatchers.Main
 
 	override fun create(context: Context) {
 		this.context = context
@@ -28,6 +27,16 @@ class LogMessagesPresenter : LogMessagesContract.Presenter, CoroutineScope {
 			}
 
 			view.onGotMessages(messages)
+		}
+	}
+
+	override fun clearLog(type: String) {
+		launch {
+			withContext(Dispatchers.IO) {
+				clearLogMessages(context, type)
+			}
+
+			view.onLogCleared()
 		}
 	}
 

@@ -83,10 +83,22 @@ object OneOne {
 		sendEmail(ctx, email)
 	}
 
-	fun clearAll() {
+	fun clearAllLogMessages() {
 		val ctx = context ?: throw IllegalStateException("Call init() first")
 
-		clear(ctx)
+		clearLogMessages(ctx)
+	}
+
+	fun clearAllLogFiles() {
+		val ctx = context ?: throw IllegalStateException("Call init() first")
+
+		clearLogFiles(ctx)
+	}
+
+	fun deleteLogFile(name: String) {
+		val ctx = context ?: throw IllegalStateException("Call init() first")
+
+		removeLogFile(ctx, name)
 	}
 
 	@JvmOverloads
@@ -115,7 +127,7 @@ object OneOne {
 		return getLogFilesList(ctx)
 	}
 
-	fun writeToLogFile(text: String, withAdditionalPhoneInfo: Boolean = false){
+	fun writeToLogFile(text: String, withAdditionalPhoneInfo: Boolean = false) {
 		val ctx = context ?: throw IllegalStateException("Call init() first")
 
 		writeTextToLogFile(ctx, text, withAdditionalPhoneInfo)

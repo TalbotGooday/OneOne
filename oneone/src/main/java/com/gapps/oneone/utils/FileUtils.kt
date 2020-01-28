@@ -8,7 +8,6 @@ import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
 import com.gapps.oneone.utils.extensions.getAppInfoString
 import com.gapps.oneone.utils.time.FastDateFormat
 import com.google.gson.Gson
-import kotlinx.coroutines.*
 import java.io.File
 import java.nio.charset.Charset
 import java.util.*
@@ -29,10 +28,10 @@ const val ERROR = "OO_LOG_E"
 const val INFO = "OO_LOG_I"
 const val VERBOSE = "OO_LOG_V"
 
-fun initLogFilesAndDirs(context: Context){
+fun initLogFilesAndDirs(context: Context) {
 	val oneOneFolder = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
 
-	if(oneOneFolder.exists().not()){
+	if (oneOneFolder.exists().not()) {
 		oneOneFolder.mkdirs()
 	}
 }
@@ -40,7 +39,6 @@ fun initLogFilesAndDirs(context: Context){
 fun getLogFilePath(fileName: String) = "$FOLDER_ONE_ONE/$fileName"
 
 fun addMessageToLog(context: Context, type: String, message: Any, tag: String) {
-
 	val fileName = when (type) {
 		DEBUG -> FILE_LOG_D
 		WARNING -> FILE_LOG_W
@@ -149,9 +147,32 @@ fun getLogFilesList(context: Context): List<FileModel> {
 	} ?: emptyList()
 }
 
-fun clear(context: Context) {
-	getFilesMap(context).values.forEach {
+fun clearLogMessages(context: Context, type: String? = null) {
+	getFilesMap(context, type).values.forEach {
 		it.writeText("")
+	}
+}
+
+fun clearLogFiles(context: Context) {
+	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
+	if (logDir.exists().not() || logDir.isDirectory.not() || logDir.listFiles().isNullOrEmpty()) {
+		return
+	}
+
+	for (f: File in logDir.listFiles()) {
+		if (!f.isDirectory) {
+			f.delete();
+		}
+	}
+
+	logDir.delete();
+}
+
+fun removeLogFile(context: Context, name: String) {
+	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
+	val logFile = File(logDir, name)
+	if (logFile.exists()) {
+		logFile.delete()
 	}
 }
 

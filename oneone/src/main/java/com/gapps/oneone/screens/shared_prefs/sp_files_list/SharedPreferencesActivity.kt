@@ -18,6 +18,7 @@ import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.addDivider
 import com.gapps.oneone.utils.extensions.color
 import com.gapps.oneone.utils.extensions.toColorDrawable
+import com.gapps.oneone.utils.extensions.visibleOrGone
 import kotlinx.android.synthetic.main.activity_shared_preferences.*
 
 class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View {
@@ -34,11 +35,19 @@ class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View
 		presenter.create(this)
 
 		initViews()
+
+		presenter.getSharedPrefFiles()
 	}
 
 	override fun onDestroy() {
 		super.onDestroy()
 		presenter.destroy()
+	}
+
+	override fun onGotSharedPreferencesFiles(data: List<SharedPrefsFileModel>) {
+		(files_list.adapter as SharedPrefsAdapter).swapData(data)
+
+		placeholder.visibleOrGone(data.isEmpty())
 	}
 
 	private fun initViews() {
@@ -51,9 +60,7 @@ class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View
 				override fun onItemClick(item: SharedPrefsFileModel) {
 					openSharedPrefsFile(item.name)
 				}
-			}).apply {
-				swapData(presenter.getSharedPrefFiles())
-			}
+			})
 
 			addDivider(color(R.color.dividerColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset_icon))
 		}

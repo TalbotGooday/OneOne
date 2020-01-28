@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
-import android.os.Build
 import com.gapps.oneone.R
 import com.gapps.oneone.utils.extensions.getAppInfoString
 import java.io.File
@@ -44,9 +43,7 @@ fun sendEmail(context: Context, email: String? = null, type: String? = null) {
 		val file = File(context.cacheDir, getLogFilePath(it))
 
 		if (file.exists()) {
-			val fileExt = File(context.externalCacheDir, getLogFilePath(it))
-
-			file.copyTo(fileExt, true)
+			val fileExt = file.copyFileToExternalCache(context, it)
 
 			filesUri.add(Uri.fromFile(fileExt))
 		}
@@ -74,6 +71,13 @@ fun sendEmail(context: Context, email: String? = null, type: String? = null) {
 					addFlags(FLAG_ACTIVITY_NEW_TASK)
 				}, null)
 	}
+}
+
+fun File.copyFileToExternalCache(context: Context, fileName: String? = null): File {
+	val fileExt = File(context.externalCacheDir, getLogFilePath(fileName ?: this.name))
+
+	this.copyTo(fileExt, true)
+	return fileExt
 }
 
 fun Context.sendTo(uri: Uri? = null, text: String? = null, type: String = "text/*") {

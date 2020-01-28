@@ -43,20 +43,22 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content">
 
-					<RadioButton
+					<androidx.appcompat.widget.AppCompatRadioButton
 						android:id="@+id/radio_true"
 						android:layout_width="match_parent"
 						android:textColor="@android:color/white"
 						android:layout_height="wrap_content"
 						android:fontFamily="@font/ps_light"
 						android:text="true"
+						app:buttonTint="@color/grey_800"
 						android:checked="true"/>
 
-					<RadioButton
+					<androidx.appcompat.widget.AppCompatRadioButton
 						android:id="@+id/radio_false"
 						android:layout_width="match_parent"
 						android:textColor="@android:color/white"
 						android:layout_height="wrap_content"
+						app:buttonTint="@color/grey_800"
 						android:fontFamily="@font/ps_light"
 						android:text="false" />
 

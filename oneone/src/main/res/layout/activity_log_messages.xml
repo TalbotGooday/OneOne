@@ -36,6 +36,15 @@
 		</LinearLayout>
 
 		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/more"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|end"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_baseline_more_vert" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
 			android:id="@+id/back"
 			android:layout_width="@dimen/icon_size"
 			android:layout_height="@dimen/icon_size"
@@ -43,7 +52,6 @@
 			android:background="?selectableItemBackgroundBorderless"
 			android:tint="@android:color/white"
 			app:srcCompat="@drawable/ic_arrow" />
-
 	</FrameLayout>
 
 	<FrameLayout
@@ -56,35 +64,16 @@
 			android:layout_height="match_parent"
 			tools:listitem="@layout/item_log" />
 
-		<LinearLayout
+		<com.gapps.oneone.utils.views.placeholder.EmptyListPlaceholder
 			android:id="@+id/messages_placeholder"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:orientation="horizontal"
-			android:gravity="center"
+			android:text="@string/no_log_messages"
 			android:visibility="gone"
-			tools:visibility="visible">
-
-			<androidx.appcompat.widget.AppCompatImageView
-				android:id="@+id/placeholder_icon"
-				android:layout_width="24dp"
-				android:layout_height="24dp"
-				app:srcCompat="@drawable/ic_console"
-				tools:tint="@color/white60"/>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="@dimen/spacing_middle"
-				android:alpha=".6"
-				android:fontFamily="@font/ps_medium"
-				android:text="@string/no_log_messages"
-				android:textColor="@android:color/white"
-				android:textSize="16sp" />
-
-		</LinearLayout>
-
+			android:textColor="@color/white60"
+			app:srcCompat="@drawable/ic_console"
+			tools:visibility="visible" />
 	</FrameLayout>
 
 </LinearLayout>

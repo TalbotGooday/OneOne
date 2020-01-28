@@ -1,10 +1,13 @@
 package com.gapps.oneone.screens.shared_prefs.sp_files_list.core
 
 import android.content.Context
-import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
+import com.gapps.oneone.screens.base.BaseAPresenter
 import com.gapps.oneone.utils.getAllSharedPreferences
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class SharedPreferencesPresenter : SharedPreferencesContract.Presenter {
+class SharedPreferencesPresenter : SharedPreferencesContract.Presenter, BaseAPresenter() {
 	override lateinit var view: SharedPreferencesContract.View
 	private lateinit var context: Context
 
@@ -19,7 +22,13 @@ class SharedPreferencesPresenter : SharedPreferencesContract.Presenter {
 	override fun destroy() {
 	}
 
-	fun getSharedPrefFiles(): List<SharedPrefsFileModel> {
-		return context.getAllSharedPreferences()
+	override fun getSharedPrefFiles() {
+		launch {
+			val data = withContext(Dispatchers.IO) {
+				context.getAllSharedPreferences()
+			}
+
+			view.onGotSharedPreferencesFiles(data)
+		}
 	}
 }

@@ -2,6 +2,7 @@ package com.gapps.oneone.screens.log.log_messages
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gapps.oneone.R
@@ -12,6 +13,9 @@ import com.gapps.oneone.screens.log.log_details.LogDetailsActivity
 import com.gapps.oneone.screens.log.log_messages.adapters.LogListAdapter
 import com.gapps.oneone.screens.log.log_messages.core.LogMessagesContract
 import com.gapps.oneone.screens.log.log_messages.core.LogMessagesPresenter
+import com.gapps.oneone.utils.bottom_menu.BottomMenu
+import com.gapps.oneone.utils.bottom_menu.MenuData
+import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_log_messages.*
 
@@ -19,6 +23,8 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 	companion object {
 		private const val TITLE = "title"
 		private const val TYPE = "type"
+
+		private const val CLEAR = 0
 
 		fun newInstance(context: Context, item: LogFileModel) = Intent(context, LogMessagesActivity::class.java).apply {
 			putExtra(TITLE, item.name)
@@ -54,8 +60,15 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 		messages_placeholder.visibleOrGone(messages.isEmpty())
 	}
 
+	override fun onLogCleared() {
+		(log_list.adapter as LogListAdapter).removeAll()
+
+		messages_placeholder.visible()
+	}
+
 	private fun initViews() {
 		back.setOnClickListener { onBackPressed() }
+		more.setOnClickListener { showMenu() }
 
 		val titleText = intent.getStringExtra(TITLE)
 
@@ -86,6 +99,41 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 
 		log_indicator.setColorFilter(color)
 
-		placeholder_icon.setColorFilter(color)
+		messages_placeholder.setIconTint(color)
 	}
+
+	private fun showMenu() {
+		val menu = MenuData().apply {
+			titleRes = R.string.select_action
+			addMenu(R.drawable.ic_delete, R.string.clear_all_messages, CLEAR)
+		}
+
+		BottomMenu.build {
+			with(this@LogMessagesActivity)
+			withBackgroundColor(color(R.color.colorPrimaryLog))
+			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withAccentColor(Color.WHITE)
+			withMenuData(menu)
+			withListener(getMenuListener())
+		}.show()
+	}
+
+	private fun getMenuListener(): BottomMenu.Listener? {
+		return object : BottomMenu.Listener {
+			override fun onItemSelected(index: Int, item: MenuDataItem) {
+				when (index) {
+					CLEAR -> {
+						presenter.clearLog(type)
+					}
+				}
+			}
+
+			override fun onCancel() {
+			}
+
+			override fun onAdditionalClick() {
+			}
+		}
+	}
+
 }

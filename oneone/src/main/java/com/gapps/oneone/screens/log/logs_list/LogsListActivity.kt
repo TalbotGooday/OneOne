@@ -91,7 +91,7 @@ class LogsListActivity : BaseActivity(), LogsListContract.View {
 					}
 
 					CLEAR_ALL_DATA -> {
-						OneOne.clearAll()
+						OneOne.clearAllLogMessages()
 					}
 				}
 			}

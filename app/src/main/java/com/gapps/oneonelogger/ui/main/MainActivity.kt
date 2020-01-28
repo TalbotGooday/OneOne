@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.gapps.oneone.OneOne
-import com.gapps.oneone.utils.extensions.printOneOneLog
+import com.gapps.oneone.utils.extensions.printOneOneLogFile
 import com.gapps.oneonelogger.R
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -58,9 +58,8 @@ class MainActivity : AppCompatActivity() {
 				try {
 					File(cacheDir, "asdfasdf/asdf/asdfasdfasdf").writeText("sasdf")
 				}catch (e: Exception){
-					e.printOneOneLog()
+					e.printOneOneLogFile()
 				}
-
 				true
 			}
 			else -> super.onOptionsItemSelected(item)

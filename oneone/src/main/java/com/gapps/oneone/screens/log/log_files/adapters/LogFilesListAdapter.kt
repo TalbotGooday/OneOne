@@ -1,9 +1,9 @@
 package com.gapps.oneone.screens.log.log_files.adapters
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.FileModel
 import kotlinx.android.synthetic.main.item_file.view.*
@@ -33,6 +33,20 @@ class LogFilesListAdapter(private val listener: Listener) : RecyclerView.Adapter
 	fun addData(data: List<FileModel>) {
 		this.data.addAll(data)
 		notifyDataSetChanged()
+	}
+
+	fun remove(deletedFileName: String) {
+		val index = this.data.indexOfFirst { it.name == deletedFileName }
+
+		if (index >= 0) {
+			this.data.removeAt(index)
+			this.notifyItemRemoved(index)
+		}
+	}
+
+	fun removeAll() {
+		this.data.clear()
+		this.notifyDataSetChanged()
 	}
 
 	class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

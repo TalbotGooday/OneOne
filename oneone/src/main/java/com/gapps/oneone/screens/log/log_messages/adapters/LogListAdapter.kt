@@ -38,6 +38,11 @@ class LogListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogL
 		notifyDataSetChanged()
 	}
 
+	fun removeAll() {
+		this.data.clear()
+		this.notifyDataSetChanged()
+	}
+
 	class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		fun bind(item: LogModel, listener: Listener) = with(itemView) {
 

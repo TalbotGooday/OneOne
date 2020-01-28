@@ -7,10 +7,12 @@ import com.gapps.oneone.screens.base.BaseView
 
 interface LogFilesListContract {
 	interface View : BaseView<Presenter> {
-
+		fun onGotLogFilesList(data: List<FileModel>)
+		fun onLogFilesDeleted()
 	}
 
 	interface Presenter : BasePresenter<View> {
-		fun getLogFilesList(): List<FileModel>
+		fun getLogFilesList()
+		fun clearAllLogFiles()
 	}
 }

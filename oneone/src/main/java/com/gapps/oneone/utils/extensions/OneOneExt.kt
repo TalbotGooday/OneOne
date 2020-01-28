@@ -12,7 +12,7 @@ fun Throwable.printOneOne(tag: String? = null) {
 	OneOne.e(tag ?: OneOne.DEFAULT_TAG, sw.toString())
 }
 
-fun Throwable.printOneOneLog(withAdditionalPhoneInfo: Boolean = true) {
+fun Throwable.printOneOneLogFile(withAdditionalPhoneInfo: Boolean = true) {
 	val sw = StringWriter()
 	val pw = PrintWriter(sw)
 	this.printStackTrace(pw)

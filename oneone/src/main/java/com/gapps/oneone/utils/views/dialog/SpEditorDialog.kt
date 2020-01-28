@@ -13,14 +13,16 @@ import kotlinx.android.synthetic.main.dialog_sp_editor.*
 import java.util.*
 
 
-class SpEditorDialog(context: Context,
-                     private val key: String?,
-                     private val type: String?,
-                     private val value: String?,
-                     private val ok: String?,
-                     private val cancel: String?,
-                     private val okAction: ((String?, String?, String?) -> Unit)? = null,
-                     private val cancelAction: (() -> Unit)? = null) : Dialog(context) {
+class SpEditorDialog(
+		context: Context,
+		private val key: String?,
+		private val type: String?,
+		private val value: String?,
+		private val ok: String?,
+		private val cancel: String?,
+		private val okAction: ((String?, String?, String?) -> Unit)? = null,
+		private val cancelAction: (() -> Unit)? = null
+) : Dialog(context) {
 
 	init {
 		requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -69,7 +71,7 @@ class SpEditorDialog(context: Context,
 
 	private fun onOkClick() {
 		val value = when (type?.toLowerCase(Locale.ENGLISH)) {
-			"boolean" -> if(radio_true.isChecked) "true" else "false"
+			"boolean" -> if (radio_true.isChecked) "true" else "false"
 
 			else -> text_editor?.text?.toString()
 		}

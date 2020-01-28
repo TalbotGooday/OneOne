@@ -40,9 +40,26 @@
 			app:srcCompat="@drawable/ic_arrow" />
 	</FrameLayout>
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/logs_list"
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:listitem="@layout/item_log_category" />
+		android:layout_height="match_parent">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/logs_list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:listitem="@layout/item_log_category" />
+
+		<com.gapps.oneone.utils.views.placeholder.EmptyListPlaceholder
+			android:id="@+id/messages_placeholder"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:text="@string/no_log_files"
+			android:visibility="gone"
+			android:textColor="@color/white60"
+			app:srcCompat="@drawable/ic_console_file"
+			tools:visibility="visible" />
+	</FrameLayout>
+
 </LinearLayout>
