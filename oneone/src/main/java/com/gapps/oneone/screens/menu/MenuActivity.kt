@@ -61,7 +61,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.show()
+		}.showIfNotVisible()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {
@@ -115,7 +115,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 					sendTo(text = getAppInfoString())
 				}
 			})
-		}.show()
+		}.showIfNotVisible()
 	}
 
 	private fun openLogs() {

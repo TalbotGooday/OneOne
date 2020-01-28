@@ -115,7 +115,7 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.show()
+		}.showIfNotVisible()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {

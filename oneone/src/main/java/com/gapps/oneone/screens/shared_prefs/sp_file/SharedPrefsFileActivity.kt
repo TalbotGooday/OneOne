@@ -94,7 +94,7 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener(item))
-		}.show()
+		}.showIfNotVisible()
 	}
 
 	private fun getMenuListener(entry: SharedPrefEntry): BottomMenu.Listener? {

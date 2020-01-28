@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gapps.oneone.R
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.gapps.oneone.utils.views.bottom_dialog.BottomSheetDialogFixed
 import kotlinx.android.synthetic.main.layout_menu_bottom.view.*
 
 class BottomMenu(val context: Context?,
@@ -39,24 +39,37 @@ class BottomMenu(val context: Context?,
 
 	)
 
+	fun showIfNotVisible(){
+		if(isVisible.not()){
+			show()
+		}
+	}
+
 	fun show() {
 		context ?: return
 
 		context.hideKeyboard()
 
-		val bottomSheetDialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
+		val bottomSheetDialog = BottomSheetDialogFixed(context, R.style.BottomSheetDialog)
 		val view = getSheetView(menuData) {
 
 			bottomSheetDialog.dismiss()
 		}
 
-		bottomSheetDialog.setContentView(view)
+		bottomSheetDialog.apply {
+			setContentView(view)
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			bottomSheetDialog.window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+			}
+			setOnShowListener {
+				isVisible = true
+			}
+			setOnDismissListener {
+				isVisible = false
+			}
+			show()
 		}
-
-		bottomSheetDialog.show()
 	}
 
 	private fun getSheetView(data: MenuData, onSelect: () -> Unit): View {

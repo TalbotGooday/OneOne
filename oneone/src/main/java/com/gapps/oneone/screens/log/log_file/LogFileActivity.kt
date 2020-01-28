@@ -108,7 +108,7 @@ class LogFileActivity : AppCompatActivity(), LogFileContract.View {
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.show()
+		}.showIfNotVisible()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {
