@@ -20,7 +20,6 @@ import com.gapps.oneone.utils.extensions.addDivider
 import com.gapps.oneone.utils.extensions.color
 import com.gapps.oneone.utils.extensions.toColorDrawable
 import com.gapps.oneone.utils.extensions.visibleOrGone
-import com.gapps.oneone.utils.sendTo
 import kotlinx.android.synthetic.main.activity_log_files_list.*
 
 class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
@@ -101,7 +100,7 @@ class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 	private fun showMenu() {
 		val menu = MenuData().apply {
 			titleRes = R.string.select_action
-			addMenu(R.drawable.ic_delete, R.string.clear_all_log_files_data, CLEAR_ALL_DATA)
+			addMenu(R.drawable.ic_oo_delete, R.string.clear_all_log_files_data, CLEAR_ALL_DATA)
 		}
 
 		BottomMenu.build {

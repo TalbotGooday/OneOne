@@ -17,7 +17,7 @@
 		android:layout_height="8dp"
 		android:layout_marginEnd="15dp"
 		android:layout_marginStart="20dp"
-		tools:src="@drawable/child_indicator"/>
+		tools:src="@drawable/oo_log_indicator"/>
 
 	<TextView
 		android:id="@+id/message"
@@ -34,6 +34,6 @@
 		android:layout_width="24dp"
 		android:layout_height="24dp"
 		android:layout_marginEnd="8dp"
-		app:srcCompat="@drawable/ic_arrow_right"/>
+		app:srcCompat="@drawable/ic_oo_arrow_right"/>
 
 </LinearLayout>

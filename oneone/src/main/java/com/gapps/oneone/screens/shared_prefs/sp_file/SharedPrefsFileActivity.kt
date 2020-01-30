@@ -80,11 +80,11 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 	private fun showEntryMenu(item: SharedPrefEntry) {
 		val menu = MenuData().apply {
 			this.title = item.key
-			addMenu(R.drawable.ic_edit, R.string.edit, MENU_EDIT)
-			addMenu(R.drawable.ic_content_copy, R.string.copy_key, MENU_COPY_KEY)
-			addMenu(R.drawable.ic_content_copy, R.string.copy_value, MENU_COPY_VALUE)
-			addMenu(R.drawable.ic_content_copy, R.string.copy_as_pair, MENU_COPY_AS_PAIR)
-			addMenu(R.drawable.ic_content_copy, R.string.copy_as_json, MENU_COPY_AS_JSON)
+			addMenu(R.drawable.ic_oo_edit, R.string.edit, MENU_EDIT)
+			addMenu(R.drawable.ic_oo_content_copy, R.string.copy_key, MENU_COPY_KEY)
+			addMenu(R.drawable.ic_oo_content_copy, R.string.copy_value, MENU_COPY_VALUE)
+			addMenu(R.drawable.ic_oo_content_copy, R.string.copy_as_pair, MENU_COPY_AS_PAIR)
+			addMenu(R.drawable.ic_oo_content_copy, R.string.copy_as_json, MENU_COPY_AS_JSON)
 		}
 
 		BottomMenu.build {

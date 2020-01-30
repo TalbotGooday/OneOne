@@ -14,7 +14,7 @@
 		android:layout_width="@dimen/pre_trial_icon_size"
 		android:layout_height="@dimen/pre_trial_icon_size"
 		android:layout_marginStart="@dimen/spacing_smlarge"
-		app:srcCompat="@drawable/ic_bug_report"
+		app:srcCompat="@drawable/ic_oo_bug_report"
 		android:tint="@color/colorAccent"/>
 
 	<TextView

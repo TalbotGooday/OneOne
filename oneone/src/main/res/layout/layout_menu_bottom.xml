@@ -11,7 +11,7 @@
 		android:id="@+id/header"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@drawable/bg_wallet_top_view_header"
+		android:background="@drawable/oo_bg_wallet_top_view_header"
 		android:minHeight="55dp">
 
 		<LinearLayout
@@ -40,7 +40,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical"
 				android:layout_marginEnd="@dimen/spacing_large"
-				android:background="@drawable/bg_btn_gray"
+				android:background="@drawable/oo_bg_btn_gray"
 				android:gravity="center_vertical"
 				android:orientation="horizontal"
 				android:padding="@dimen/spacing_medium"
@@ -53,7 +53,7 @@
 					android:layout_height="18dp"
 					android:tint="#9C9890"
 					android:layout_marginStart="@dimen/spacing_medium"
-					app:srcCompat="@drawable/ic_add" />
+					app:srcCompat="@drawable/ic_oo_add" />
 
 				<TextView
 					android:id="@+id/additional_button_text"
@@ -73,7 +73,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="1dp"
 			android:layout_gravity="bottom"
-			android:background="@drawable/divider_horizontal_full" />
+			android:background="@drawable/oo_divider_horizontal_full" />
 
 	</FrameLayout>
 
@@ -103,7 +103,7 @@
 				android:layout_height="1dp"
 				android:layout_marginStart="20dp"
 				android:layout_marginEnd="20dp"
-				android:background="@drawable/divider_horizontal_full" />
+				android:background="@drawable/oo_divider_horizontal_full" />
 
 			<TextView
 				android:id="@+id/btn_close"

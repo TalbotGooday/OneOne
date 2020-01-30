@@ -68,8 +68,8 @@ class LogsListActivity : BaseActivity(), LogsListContract.View {
 	private fun showMenu() {
 		val menu = MenuData().apply {
 			titleRes = R.string.select_action
-			addMenu(R.drawable.ic_bug_report, R.string.sent_report, SEND_REPORT)
-			addMenu(R.drawable.ic_delete, R.string.clear_all_log_data, CLEAR_ALL_DATA)
+			addMenu(R.drawable.ic_oo_bug_report, R.string.sent_report, SEND_REPORT)
+			addMenu(R.drawable.ic_oo_delete, R.string.clear_all_log_data, CLEAR_ALL_DATA)
 		}
 
 		BottomMenu.build {

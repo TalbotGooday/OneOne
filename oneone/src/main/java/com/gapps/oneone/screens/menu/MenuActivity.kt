@@ -51,7 +51,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 	private fun showMenu() {
 		val menu = MenuData().apply {
 			titleRes = R.string.select_action
-			addMenu(R.drawable.ic_phone, R.string.app_info, GET_APP_INFO)
+			addMenu(R.drawable.ic_oo_phone, R.string.app_info, GET_APP_INFO)
 		}
 
 		BottomMenu.build {
@@ -86,7 +86,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 		val menu = MenuData().apply {
 			titleRes = R.string.app_info
 			buttonRes = R.string.send
-			buttonIcon = R.drawable.ic_mail
+			buttonIcon = R.drawable.ic_oo_mail
 		}
 
 		getAppInfoMapLocalized().entries.forEach {

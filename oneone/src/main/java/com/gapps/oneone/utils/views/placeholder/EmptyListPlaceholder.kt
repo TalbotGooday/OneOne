@@ -2,6 +2,8 @@ package com.gapps.oneone.utils.views.placeholder
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
@@ -23,7 +25,7 @@ class EmptyListPlaceholder @JvmOverloads constructor(
 	}
 
 	fun setIconTint(@ColorInt color: Int) {
-		placeholder_icon.setColorFilter(color)
+		placeholder_icon.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
 	}
 
 	fun setText(@StringRes text: Int) {

@@ -28,7 +28,7 @@
 			android:layout_gravity="center_vertical|end"
 			android:background="?selectableItemBackgroundBorderless"
 			android:tint="@android:color/white"
-			app:srcCompat="@drawable/ic_baseline_more_vert" />
+			app:srcCompat="@drawable/ic_oo_baseline_more_vert" />
 
 		<androidx.appcompat.widget.AppCompatImageButton
 			android:id="@+id/back"
@@ -37,7 +37,7 @@
 			android:layout_gravity="center_vertical|start"
 			android:background="?selectableItemBackgroundBorderless"
 			android:tint="@android:color/white"
-			app:srcCompat="@drawable/ic_arrow" />
+			app:srcCompat="@drawable/ic_oo_arrow" />
 	</FrameLayout>
 
 	<FrameLayout
@@ -57,8 +57,9 @@
 			android:layout_gravity="center"
 			android:text="@string/no_log_files"
 			android:visibility="gone"
+			android:tint="@color/white60"
 			android:textColor="@color/white60"
-			app:srcCompat="@drawable/ic_console_file"
+			app:srcCompat="@drawable/ic_oo_console_file"
 			tools:visibility="visible" />
 	</FrameLayout>
 

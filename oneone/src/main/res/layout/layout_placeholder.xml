@@ -14,7 +14,7 @@
 		android:id="@+id/placeholder_icon"
 		android:layout_width="24dp"
 		android:layout_height="24dp"
-		app:srcCompat="@drawable/ic_console"
+		app:srcCompat="@drawable/ic_oo_console"
 		tools:tint="#99FFFFFF" />
 
 	<TextView

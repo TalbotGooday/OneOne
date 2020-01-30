@@ -105,7 +105,7 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 	private fun showMenu() {
 		val menu = MenuData().apply {
 			titleRes = R.string.select_action
-			addMenu(R.drawable.ic_delete, R.string.clear_all_messages, CLEAR)
+			addMenu(R.drawable.ic_oo_delete, R.string.clear_all_messages, CLEAR)
 		}
 
 		BottomMenu.build {

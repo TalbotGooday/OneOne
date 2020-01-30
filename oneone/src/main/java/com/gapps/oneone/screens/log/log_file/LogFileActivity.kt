@@ -96,9 +96,9 @@ class LogFileActivity : AppCompatActivity(), LogFileContract.View {
 		val menu = MenuData().apply {
 			titleRes = R.string.select_action
 
-			addMenu(R.drawable.ic_share, R.string.share_text, SHARE_LOG_TEXT)
-			addMenu(R.drawable.ic_share, R.string.share_file, SHARE_LOG_FILE)
-			addMenu(R.drawable.ic_delete, R.string.delete, DELETE)
+			addMenu(R.drawable.ic_oo_share, R.string.share_text, SHARE_LOG_TEXT)
+			addMenu(R.drawable.ic_oo_share, R.string.share_file, SHARE_LOG_FILE)
+			addMenu(R.drawable.ic_oo_delete, R.string.delete, DELETE)
 		}
 
 		BottomMenu.build {

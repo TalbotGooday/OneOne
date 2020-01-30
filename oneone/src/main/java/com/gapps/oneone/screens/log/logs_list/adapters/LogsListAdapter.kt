@@ -1,6 +1,5 @@
 package com.gapps.oneone.screens.log.logs_list.adapters
 
-import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.LogFileModel
-import com.gapps.oneone.utils.*
 import com.gapps.oneone.utils.extensions.getLogIndicatorByType
 import kotlinx.android.synthetic.main.item_log_category.view.*
 
@@ -47,7 +45,7 @@ class LogsListAdapter(private val listener: Listener) : RecyclerView.Adapter<Log
 
 			val color = getLogIndicatorByType(item.type)
 
-			val indicator = ContextCompat.getDrawable(itemView.context, R.drawable.child_indicator)?.apply {
+			val indicator = ContextCompat.getDrawable(itemView.context, R.drawable.oo_log_indicator)?.apply {
 				colorFilter = PorterDuffColorFilter(ContextCompat.getColor(itemView.context, color), PorterDuff.Mode.SRC_IN)
 			}
 
