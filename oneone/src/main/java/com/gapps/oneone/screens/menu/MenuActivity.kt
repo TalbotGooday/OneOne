@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gapps.oneone.R
+import com.gapps.oneone.models.menu.MenuItem
 import com.gapps.oneone.screens.base.BaseActivity
 import com.gapps.oneone.screens.log.log_files.LogFilesListActivity
 import com.gapps.oneone.screens.log.logs_list.LogsListActivity
+import com.gapps.oneone.screens.menu.adapters.MenuAdapter
 import com.gapps.oneone.screens.menu.core.MenuContract
 import com.gapps.oneone.screens.menu.core.MenuPresenter
 import com.gapps.oneone.screens.shared_prefs.sp_files_list.SharedPreferencesActivity
@@ -43,9 +46,32 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 		back.setOnClickListener { onBackPressed() }
 		more.setOnClickListener { showMenu() }
 
-		log_container.setOnClickListener { openLogs() }
-		log_files_container.setOnClickListener { openLogFiles() }
-		shared_prefs_container.setOnClickListener { openSharedPreferences() }
+		initMenuList()
+	}
+
+	private fun initMenuList() {
+		val menuData = listOf(
+				MenuItem(0, R.string.log, R.drawable.ic_oo_console),
+				MenuItem(1, R.string.log_files, R.drawable.ic_oo_console_file),
+				MenuItem(2, R.string.shared_prefs, R.drawable.ic_oo_file)
+		)
+
+		menu_list.apply {
+			layoutManager = LinearLayoutManager(this@MenuActivity)
+			adapter = MenuAdapter(object : MenuAdapter.Listener {
+				override fun onItemClick(item: MenuItem) {
+					when(item.id){
+						0 ->  openLogs()
+						1 ->  openLogFiles()
+						2 ->  openSharedPreferences()
+					}
+				}
+			}).apply {
+				swapData(menuData)
+			}
+
+			addDivider(color(R.color.colorDividerOOColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset_icon))
+		}
 	}
 
 	private fun showMenu() {

@@ -3,6 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:background="@color/colorOOPrimaryLog"
 	android:orientation="vertical">
 
@@ -41,122 +42,9 @@
 			app:srcCompat="@drawable/ic_oo_arrow" />
 	</FrameLayout>
 
-	<androidx.core.widget.NestedScrollView
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/menu_list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:divider="@drawable/oo_divider_horizontal_full"
-			android:orientation="vertical"
-			android:showDividers="middle|end">
-
-			<LinearLayout
-				android:id="@+id/log_container"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="?selectableItemBackground"
-				android:gravity="center"
-				android:orientation="horizontal"
-				android:paddingTop="20dp"
-				android:paddingBottom="20dp">
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:id="@+id/log_icon"
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginStart="20dp"
-					android:layout_marginEnd="15dp"
-					android:tint="@android:color/white"
-					app:srcCompat="@drawable/ic_oo_console" />
-
-				<TextView
-					android:id="@+id/log_message"
-					style="@style/ItemMenuText"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:text="@string/log" />
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginEnd="8dp"
-					app:srcCompat="@drawable/ic_oo_arrow_right" />
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:id="@+id/log_files_container"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="?selectableItemBackground"
-				android:gravity="center"
-				android:orientation="horizontal"
-				android:paddingTop="20dp"
-				android:paddingBottom="20dp">
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:id="@+id/log_files_icon"
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginStart="20dp"
-					android:layout_marginEnd="15dp"
-					android:tint="@android:color/white"
-					app:srcCompat="@drawable/ic_oo_console_file" />
-
-				<TextView
-					android:id="@+id/log_files_message"
-					style="@style/ItemMenuText"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:text="@string/log_files" />
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginEnd="8dp"
-					app:srcCompat="@drawable/ic_oo_arrow_right" />
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:id="@+id/shared_prefs_container"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="?selectableItemBackground"
-				android:gravity="center"
-				android:orientation="horizontal"
-				android:paddingTop="20dp"
-				android:paddingBottom="20dp">
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:id="@+id/shared_prefs_icon"
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginStart="20dp"
-					android:layout_marginEnd="15dp"
-					android:tint="@android:color/white"
-					app:srcCompat="@drawable/ic_oo_file" />
-
-				<TextView
-					android:id="@+id/shared_prefs_message"
-					style="@style/ItemMenuText"
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:text="@string/shared_prefs" />
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:id="@+id/shared_prefs_next"
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginEnd="8dp"
-					app:srcCompat="@drawable/ic_oo_arrow_right" />
-
-			</LinearLayout>
-		</LinearLayout>
-	</androidx.core.widget.NestedScrollView>
+		android:layout_height="match_parent"
+		tools:listitem="@layout/item_oo_menu"/>
 </LinearLayout>
