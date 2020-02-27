@@ -7,9 +7,5 @@ class App: Application() {
 	override fun onCreate() {
 		super.onCreate()
 
-		OneOne.init(this)
-
-		OneOne.d(message = "init")
-
 	}
 }

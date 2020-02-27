@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/shared_prefs_container"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="?selectableItemBackground"
+	android:gravity="center"
+	android:orientation="horizontal"
+	android:paddingTop="20dp"
+	android:paddingBottom="20dp"
+	tools:background="@color/colorOOPrimaryLog">
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/icon"
+		android:layout_width="24dp"
+		android:layout_height="24dp"
+		android:layout_marginStart="20dp"
+		android:layout_marginEnd="15dp"
+		android:tint="@android:color/white"
+		app:srcCompat="@drawable/ic_oo_file" />
+
+	<TextView
+		android:id="@+id/file_name"
+		style="@style/ItemMenuText"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:text="@string/shared_prefs" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/next"
+		android:layout_width="24dp"
+		android:layout_height="24dp"
+		android:layout_marginEnd="8dp"
+		app:srcCompat="@drawable/ic_oo_arrow_right" />
+
+</LinearLayout>

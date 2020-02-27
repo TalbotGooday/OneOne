@@ -19,7 +19,7 @@ import com.gapps.oneone.utils.extensions.addDivider
 import com.gapps.oneone.utils.extensions.color
 import com.gapps.oneone.utils.extensions.toColorDrawable
 import com.gapps.oneone.utils.extensions.visibleOrGone
-import kotlinx.android.synthetic.main.activity_shared_preferences.*
+import kotlinx.android.synthetic.main.activity_oo_shared_preferences.*
 
 class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View {
 	companion object {
@@ -30,7 +30,7 @@ class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_shared_preferences)
+		setContentView(R.layout.activity_oo_shared_preferences)
 
 		presenter.create(this)
 
@@ -62,7 +62,7 @@ class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View
 				}
 			})
 
-			addDivider(color(R.color.dividerColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset_icon))
+			addDivider(color(R.color.colorDividerOOColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset_icon))
 		}
 	}
 
@@ -73,12 +73,12 @@ class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View
 
 		BottomMenu.build {
 			with(this@SharedPreferencesActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {

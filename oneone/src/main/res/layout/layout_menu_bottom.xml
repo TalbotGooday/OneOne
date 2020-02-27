@@ -30,7 +30,7 @@
 				android:ellipsize="end"
 				android:fontFamily="@font/ps_medium"
 				android:maxLines="3"
-				android:textColor="@color/grey_800"
+				android:textColor="@color/colorGrayOO800"
 				android:textSize="14sp"
 				tools:text="Latin only" />
 
@@ -63,7 +63,7 @@
 					android:layout_marginEnd="@dimen/spacing_medium"
 					android:fontFamily="@font/ps_light"
 					android:text="Make a copy"
-					android:textColor="@color/grey_800"
+					android:textColor="@color/colorGrayOO800"
 					android:textSize="12sp" />
 			</LinearLayout>
 		</LinearLayout>
@@ -89,7 +89,7 @@
 			android:layout_gravity="bottom"
 			android:orientation="vertical"
 			tools:itemCount="5"
-			tools:listitem="@layout/item_bottom_menu_small" />
+			tools:listitem="@layout/item_oo_bottom_menu_small" />
 
 		<LinearLayout
 			android:id="@+id/close_container"
@@ -113,7 +113,7 @@
 				android:fontFamily="@font/ps_bold"
 				android:gravity="center"
 				android:text="Close"
-				android:textColor="@color/grey_800" />
+				android:textColor="@color/colorGrayOO800" />
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

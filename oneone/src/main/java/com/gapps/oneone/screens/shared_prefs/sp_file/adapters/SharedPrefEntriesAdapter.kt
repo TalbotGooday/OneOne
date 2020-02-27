@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.shared_prefs.SharedPrefEntry
-import kotlinx.android.synthetic.main.item_sp_entry.view.*
+import kotlinx.android.synthetic.main.item_oo_sp_entry.view.*
 
 class SharedPrefEntriesAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefEntriesAdapter.Holder>() {
 
@@ -15,7 +15,7 @@ class SharedPrefEntriesAdapter(private val listener: Listener) : RecyclerView.Ad
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 		return Holder(
 				LayoutInflater.from(parent.context)
-						.inflate(R.layout.item_sp_entry, parent, false)
+						.inflate(R.layout.item_oo_sp_entry, parent, false)
 		)
 	}
 

@@ -39,12 +39,6 @@ class BottomMenu(val context: Context?,
 
 	)
 
-	fun showIfNotVisible(){
-		if(isVisible.not()){
-			show()
-		}
-	}
-
 	fun show() {
 		context ?: return
 
@@ -52,7 +46,6 @@ class BottomMenu(val context: Context?,
 
 		val bottomSheetDialog = BottomSheetDialogFixed(context, R.style.BottomSheetDialog)
 		val view = getSheetView(menuData) {
-
 			bottomSheetDialog.dismiss()
 		}
 
@@ -107,8 +100,8 @@ class BottomMenu(val context: Context?,
 				visibleOrGone(data.button != null || data.buttonRes != null)
 				backgroundTint(textColorMain)
 				setOnClickListener {
-					listener?.onAdditionalClick()
 					onSelect.invoke()
+					listener?.onAdditionalClick()
 				}
 			}
 
@@ -121,8 +114,8 @@ class BottomMenu(val context: Context?,
 				}
 
 				setOnClickListener {
-					listener?.onCancel()
 					onSelect.invoke()
+					listener?.onCancel()
 				}
 
 				setTextColor(textColorBackground)

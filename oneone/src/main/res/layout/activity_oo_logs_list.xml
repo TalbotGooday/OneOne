@@ -4,13 +4,13 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimaryLog"
+	android:background="@color/colorOOPrimaryLog"
 	android:orientation="vertical">
 
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/colorPrimaryDarkLog">
+		android:background="@color/colorOOPrimaryDarkLog">
 
 		<TextView
 			android:layout_width="match_parent"
@@ -44,5 +44,5 @@
 		android:id="@+id/logs_list"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:listitem="@layout/item_log_category" />
+		tools:listitem="@layout/item_oo_log_category" />
 </LinearLayout>

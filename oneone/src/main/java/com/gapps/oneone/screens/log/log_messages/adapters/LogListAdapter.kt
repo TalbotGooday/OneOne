@@ -9,7 +9,7 @@ import com.gapps.oneone.R
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.utils.extensions.toStrDate
 import com.gapps.oneone.utils.extensions.visibleOrGone
-import kotlinx.android.synthetic.main.item_log.view.*
+import kotlinx.android.synthetic.main.item_oo_log.view.*
 import java.util.*
 
 class LogListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogListAdapter.Holder>() {
@@ -19,7 +19,7 @@ class LogListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogL
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 		return Holder(
 				LayoutInflater.from(parent.context)
-						.inflate(R.layout.item_log, parent, false)
+						.inflate(R.layout.item_oo_log, parent, false)
 		)
 	}
 

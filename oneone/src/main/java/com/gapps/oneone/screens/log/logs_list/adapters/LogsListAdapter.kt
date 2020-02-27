@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.LogFileModel
 import com.gapps.oneone.utils.extensions.getLogIndicatorByType
-import kotlinx.android.synthetic.main.item_log_category.view.*
+import kotlinx.android.synthetic.main.item_oo_log_category.view.*
 
 
 class LogsListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogsListAdapter.Holder>() {
@@ -20,7 +20,7 @@ class LogsListAdapter(private val listener: Listener) : RecyclerView.Adapter<Log
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 		return Holder(
 				LayoutInflater.from(parent.context)
-						.inflate(R.layout.item_log_category, parent, false)
+						.inflate(R.layout.item_oo_log_category, parent, false)
 		)
 	}
 

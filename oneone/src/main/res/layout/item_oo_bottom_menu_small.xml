@@ -15,7 +15,7 @@
 		android:layout_height="@dimen/pre_trial_icon_size"
 		android:layout_marginStart="@dimen/spacing_smlarge"
 		app:srcCompat="@drawable/ic_oo_bug_report"
-		android:tint="@color/colorAccent"/>
+		android:tint="@color/colorGrayOO800"/>
 
 	<TextView
 		android:id="@+id/text"
@@ -26,7 +26,7 @@
 		android:fontFamily="@font/ps_light"
 		android:gravity="center_vertical"
 		tools:text="Make a copy"
-		android:textColor="@color/grey_800"
+		android:textColor="@color/colorGrayOO800"
 		android:textSize="14sp" />
 
 </LinearLayout>

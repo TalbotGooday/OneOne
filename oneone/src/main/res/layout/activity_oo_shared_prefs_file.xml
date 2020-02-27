@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/colorOOPrimaryLog"
+	android:orientation="vertical">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/colorOOPrimaryDarkLog">
+
+		<TextView
+			android:id="@+id/toolbar_title"
+			android:layout_width="match_parent"
+			android:layout_height="55dp"
+			android:layout_marginStart="@dimen/icon_size"
+			android:layout_marginEnd="@dimen/icon_size"
+			android:fontFamily="@font/ps_medium"
+			android:gravity="center"
+			android:maxWidth="200dp"
+			android:text="@string/logger_title"
+			android:textColor="@android:color/white"
+			android:textSize="18sp" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/more"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|end"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_oo_baseline_more_vert" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			android:id="@+id/back"
+			android:layout_width="@dimen/icon_size"
+			android:layout_height="@dimen/icon_size"
+			android:layout_gravity="center_vertical|start"
+			android:background="?selectableItemBackgroundBorderless"
+			android:tint="@android:color/white"
+			app:srcCompat="@drawable/ic_oo_arrow" />
+	</FrameLayout>
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/entries_list"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+</LinearLayout>

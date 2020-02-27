@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimaryLog">#232A32</color>
-	<color name="colorPrimaryDarkLog">#FF21272C</color>
+	<color name="colorOOPrimaryLog">#232A32</color>
+	<color name="colorOOPrimaryDarkLog">#FF21272C</color>
 	<color name="colorAccentLog">#E6232A32</color>
-	<color name="colorFakeProgressProgress">#E6232A32</color>
-	<color name="secondaryText">#E681868C</color>
+	<color name="colorOOFakeProgressProgress">#E6232A32</color>
+	<color name="colorOOSecondaryText">#E681868C</color>
 
-	<color name="colorDebug">#00CA49</color>
-	<color name="colorErrors">#fd4440</color>
-	<color name="colorInfo">#4184f3</color>
-	<color name="colorWarnings">#feda20</color>
+	<color name="colorOODebug">#00CA49</color>
+	<color name="colorOOErrors">#fd4440</color>
+	<color name="colorOOInfo">#4184f3</color>
+	<color name="colorOOWarnings">#feda20</color>
 
-	<color name="grey_800">#424242</color>
-	<color name="dividerColor">#2A3239</color>
-	<color name="dividerColor1">#5A8898</color>
-	<color name="white60">#99FFFFFF</color>
-	<color name="background">#5A8898</color>
+	<color name="colorGrayOO800">#424242</color>
+	<color name="colorDividerOOColor">#2A3239</color>
+	<color name="colorDividerOOColor1">#5A8898</color>
+	<color name="colorWhiteOO60">#99FFFFFF</color>
+	<color name="colorBackgroundOO">#5A8898</color>
 
 </resources>

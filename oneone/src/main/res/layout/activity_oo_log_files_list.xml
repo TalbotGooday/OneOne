@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:background="@color/colorPrimaryLog"
+	android:background="@color/colorOOPrimaryLog"
 	android:orientation="vertical">
 
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/colorPrimaryDarkLog">
+		android:background="@color/colorOOPrimaryDarkLog">
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="55dp"
-			android:fontFamily="@font/ps_medium"
+			android:layout_marginStart="@dimen/icon_size"
+			android:layout_marginEnd="@dimen/icon_size"
 			android:gravity="center"
-			android:text="@string/shared_prefs"
+			android:text="@string/log_files"
 			android:textColor="@android:color/white"
 			android:textSize="18sp" />
 
@@ -45,22 +46,22 @@
 		android:layout_height="match_parent">
 
 		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/files_list"
+			android:id="@+id/logs_list"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			tools:listitem="@layout/item_file"/>
+			tools:listitem="@layout/item_oo_log_category" />
 
-		<com.gapps.oneone.utils.views.placeholder.EmptyListPlaceholder
-			android:id="@+id/placeholder"
+		<com.gapps.oneone.utils.views.placeholder.OOEmptyListPlaceholder
+			android:id="@+id/messages_placeholder"
 			android:layout_width="wrap_content"
-			app:srcCompat="@drawable/ic_oo_file"
-			android:tint="@color/white60"
+			android:layout_height="wrap_content"
 			android:layout_gravity="center"
+			android:text="@string/no_log_files"
 			android:visibility="gone"
-			android:textColor="@color/white60"
-			tools:visibility="visible"
-			android:text="@string/no_sp_files"
-			android:layout_height="wrap_content"/>
+			android:tint="@color/colorWhiteOO60"
+			android:textColor="@color/colorWhiteOO60"
+			app:srcCompat="@drawable/ic_oo_console_file"
+			tools:visibility="visible" />
 	</FrameLayout>
 
 </LinearLayout>

@@ -16,7 +16,7 @@ import com.gapps.oneone.utils.bottom_menu.MenuData
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
 import com.gapps.oneone.utils.views.dialog.SpEditorDialog
-import kotlinx.android.synthetic.main.activity_shared_prefs_file.*
+import kotlinx.android.synthetic.main.activity_oo_shared_prefs_file.*
 
 class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 	companion object {
@@ -28,7 +28,6 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 		private const val MENU_COPY_AS_PAIR = 3
 		private const val MENU_COPY_AS_JSON = 4
 
-		private const val MENU_SHARE_FILE = 0
 		fun newInstance(context: Context, fileName: String) = Intent(context, SharedPrefsFileActivity::class.java).apply {
 			putExtra(FILE_NAME, fileName)
 		}
@@ -40,7 +39,7 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_shared_prefs_file)
+		setContentView(R.layout.activity_oo_shared_prefs_file)
 
 		presenter.create(this)
 
@@ -73,7 +72,7 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 				swapData(presenter.getSharedPrefEntries(fileName))
 			}
 
-			addDivider(color(R.color.dividerColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = 0)
+			addDivider(color(R.color.colorDividerOOColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = 0)
 		}
 	}
 
@@ -89,12 +88,12 @@ class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 
 		BottomMenu.build {
 			with(this@SharedPrefsFileActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener(item))
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun getMenuListener(entry: SharedPrefEntry): BottomMenu.Listener? {

@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	app:cardBackgroundColor="@color/colorFakeProgressProgress"
+	app:cardBackgroundColor="@color/colorOOFakeProgressProgress"
 	app:cardCornerRadius="@dimen/spacing_xmedium"
 	app:cardElevation="3dp"
 	app:cardUseCompatPadding="true">
@@ -50,7 +50,7 @@
 						android:layout_height="wrap_content"
 						android:fontFamily="@font/ps_light"
 						android:text="true"
-						app:buttonTint="@color/grey_800"
+						app:buttonTint="@color/colorGrayOO800"
 						android:checked="true"/>
 
 					<androidx.appcompat.widget.AppCompatRadioButton
@@ -58,7 +58,7 @@
 						android:layout_width="match_parent"
 						android:textColor="@android:color/white"
 						android:layout_height="wrap_content"
-						app:buttonTint="@color/grey_800"
+						app:buttonTint="@color/colorGrayOO800"
 						android:fontFamily="@font/ps_light"
 						android:text="false" />
 

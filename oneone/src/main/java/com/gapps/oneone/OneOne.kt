@@ -22,7 +22,7 @@ object OneOne {
 	private var context: Context? = null
 	private val helper = OneOneHelper()
 
-	fun init(context: Application) {
+	internal fun init(context: Context) {
 		this.context = context
 
 		initCrashLogger()

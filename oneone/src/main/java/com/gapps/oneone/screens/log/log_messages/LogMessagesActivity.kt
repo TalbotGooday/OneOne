@@ -17,7 +17,7 @@ import com.gapps.oneone.utils.bottom_menu.BottomMenu
 import com.gapps.oneone.utils.bottom_menu.MenuData
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
-import kotlinx.android.synthetic.main.activity_log_messages.*
+import kotlinx.android.synthetic.main.activity_oo_log_messages.*
 
 class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 	companion object {
@@ -38,7 +38,7 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_log_messages)
+		setContentView(R.layout.activity_oo_log_messages)
 
 		presenter.create(this)
 
@@ -84,7 +84,7 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 				}
 			})
 
-			addDivider(color(R.color.dividerColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset))
+			addDivider(color(R.color.colorDividerOOColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset))
 		}
 	}
 
@@ -110,12 +110,12 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 
 		BottomMenu.build {
 			with(this@LogMessagesActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {

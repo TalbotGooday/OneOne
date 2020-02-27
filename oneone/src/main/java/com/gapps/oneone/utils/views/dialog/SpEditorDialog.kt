@@ -9,7 +9,7 @@ import android.view.Window
 import com.gapps.oneone.R
 import com.gapps.oneone.utils.extensions.gone
 import com.gapps.oneone.utils.extensions.visible
-import kotlinx.android.synthetic.main.dialog_sp_editor.*
+import kotlinx.android.synthetic.main.dialog_oo_sp_editor.*
 import java.util.*
 
 
@@ -26,7 +26,7 @@ class SpEditorDialog(
 
 	init {
 		requestWindowFeature(Window.FEATURE_NO_TITLE)
-		setContentView(R.layout.dialog_sp_editor)
+		setContentView(R.layout.dialog_oo_sp_editor)
 		window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 		setCancelable(true)
 

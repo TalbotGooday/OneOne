@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.FileModel
-import kotlinx.android.synthetic.main.item_file.view.*
+import kotlinx.android.synthetic.main.item_oo_file.view.*
 
 
 class LogFilesListAdapter(private val listener: Listener) : RecyclerView.Adapter<LogFilesListAdapter.Holder>() {
@@ -16,7 +16,7 @@ class LogFilesListAdapter(private val listener: Listener) : RecyclerView.Adapter
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 		return Holder(
 				LayoutInflater.from(parent.context)
-						.inflate(R.layout.item_file, parent, false)
+						.inflate(R.layout.item_oo_file, parent, false)
 		)
 	}
 

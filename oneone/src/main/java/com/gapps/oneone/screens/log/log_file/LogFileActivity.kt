@@ -17,7 +17,7 @@ import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.color
 import com.gapps.oneone.utils.extensions.toast
 import com.gapps.oneone.utils.sendTo
-import kotlinx.android.synthetic.main.activity_log_file.*
+import kotlinx.android.synthetic.main.activity_oo_log_file.*
 
 class LogFileActivity : AppCompatActivity(), LogFileContract.View {
 	companion object {
@@ -40,7 +40,7 @@ class LogFileActivity : AppCompatActivity(), LogFileContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_log_file)
+		setContentView(R.layout.activity_oo_log_file)
 
 		val path = intent.getStringExtra(PATH)
 
@@ -103,12 +103,12 @@ class LogFileActivity : AppCompatActivity(), LogFileContract.View {
 
 		BottomMenu.build {
 			with(this@LogFileActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {

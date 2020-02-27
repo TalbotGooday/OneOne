@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<declare-styleable name="EmptyListPlaceholder">
+	<declare-styleable name="OOEmptyListPlaceholder">
 		<attr name="srcCompat"/>
 		<attr name="android:text"/>
 		<attr name="android:textColor"/>

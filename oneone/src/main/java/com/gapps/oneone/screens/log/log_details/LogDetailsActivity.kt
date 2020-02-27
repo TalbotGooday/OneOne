@@ -9,7 +9,7 @@ import com.gapps.oneone.screens.base.BaseActivity
 import com.gapps.oneone.screens.log.log_details.core.LogDetailsContract
 import com.gapps.oneone.screens.log.log_details.core.LogDetailsPresenter
 import com.gapps.oneone.utils.extensions.*
-import kotlinx.android.synthetic.main.activity_log_details.*
+import kotlinx.android.synthetic.main.activity_oo_log_details.*
 
 class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
 	companion object {
@@ -24,7 +24,7 @@ class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_log_details)
+		setContentView(R.layout.activity_oo_log_details)
 
 		initViews()
 	}

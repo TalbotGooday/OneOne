@@ -68,16 +68,16 @@ fun Int.toColorDrawable(@Px size: Int): ColorDrawable{
 fun getLogIndicatorByType(type: String): Int {
 	return when (type) {
 		DEBUG -> {
-			R.color.colorDebug
+			R.color.colorOODebug
 		}
 		WARNING -> {
-			R.color.colorWarnings
+			R.color.colorOOWarnings
 		}
 		ERROR -> {
-			R.color.colorErrors
+			R.color.colorOOErrors
 		}
 		INFO -> {
-			R.color.colorInfo
+			R.color.colorOOInfo
 		}
 		VERBOSE -> {
 			android.R.color.white

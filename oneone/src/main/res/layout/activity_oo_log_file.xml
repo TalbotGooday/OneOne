@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimaryLog"
+	android:background="@color/colorOOPrimaryLog"
 	android:orientation="vertical">
 
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/colorPrimaryDarkLog">
+		android:background="@color/colorOOPrimaryDarkLog">
 
 		<TextView
 			android:id="@+id/toolbar_title"
 			android:layout_width="match_parent"
 			android:layout_height="55dp"
+			android:layout_marginStart="@dimen/icon_size"
+			android:layout_marginEnd="@dimen/icon_size"
+			android:ellipsize="end"
 			android:fontFamily="@font/ps_medium"
 			android:gravity="center"
-			android:maxWidth="200dp"
-			android:text="@string/logger_title"
+			android:maxLines="1"
+			android:text="@string/log_files"
 			android:textColor="@android:color/white"
 			android:textSize="18sp" />
 
@@ -41,9 +45,18 @@
 			app:srcCompat="@drawable/ic_oo_arrow" />
 	</FrameLayout>
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/entries_list"
+	<androidx.core.widget.NestedScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="match_parent">
 
+		<TextView
+			android:id="@+id/file_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium"
+			android:textColor="@android:color/white"
+			android:textIsSelectable="true"
+			android:textSize="14sp"
+			tools:text="dsfsdfsdfsdf" />
+	</androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gapps.oneone.R
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.animateBottomTop
-import kotlinx.android.synthetic.main.item_bottom_menu_small.view.*
+import kotlinx.android.synthetic.main.item_oo_bottom_menu_small.view.*
 import java.util.*
 
 class MenuAdapter(
@@ -26,7 +26,7 @@ class MenuAdapter(
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 		return Holder(
 				LayoutInflater.from(parent.context)
-						.inflate(R.layout.item_bottom_menu_small, parent, false)
+						.inflate(R.layout.item_oo_bottom_menu_small, parent, false)
 		)
 	}
 

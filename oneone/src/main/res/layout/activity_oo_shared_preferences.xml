@@ -4,25 +4,22 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimaryLog"
+	android:background="@color/colorOOPrimaryLog"
 	android:orientation="vertical">
 
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/colorPrimaryDarkLog">
+		android:background="@color/colorOOPrimaryDarkLog">
 
 		<TextView
-			android:id="@+id/toolbar_title"
 			android:layout_width="match_parent"
 			android:layout_height="55dp"
 			android:layout_marginStart="@dimen/icon_size"
 			android:layout_marginEnd="@dimen/icon_size"
-			android:ellipsize="end"
 			android:fontFamily="@font/ps_medium"
 			android:gravity="center"
-			android:maxLines="1"
-			android:text="@string/log_files"
+			android:text="@string/shared_prefs"
 			android:textColor="@android:color/white"
 			android:textSize="18sp" />
 
@@ -45,18 +42,27 @@
 			app:srcCompat="@drawable/ic_oo_arrow" />
 	</FrameLayout>
 
-	<androidx.core.widget.NestedScrollView
+	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
-		<TextView
-			android:id="@+id/file_text"
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/files_list"
 			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:listitem="@layout/item_oo_file" />
+
+		<com.gapps.oneone.utils.views.placeholder.OOEmptyListPlaceholder
+			android:id="@+id/placeholder"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="@dimen/spacing_medium"
-			android:textColor="@android:color/white"
-			android:textIsSelectable="true"
-			android:textSize="14sp"
-			tools:text="dsfsdfsdfsdf" />
-	</androidx.core.widget.NestedScrollView>
+			android:layout_gravity="center"
+			android:text="@string/no_sp_files"
+			android:textColor="@color/colorWhiteOO60"
+			android:tint="@color/colorWhiteOO60"
+			android:visibility="gone"
+			app:srcCompat="@drawable/ic_oo_file"
+			tools:visibility="visible" />
+	</FrameLayout>
+
 </LinearLayout>

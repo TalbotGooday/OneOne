@@ -20,7 +20,7 @@ import com.gapps.oneone.utils.extensions.addDivider
 import com.gapps.oneone.utils.extensions.color
 import com.gapps.oneone.utils.extensions.toColorDrawable
 import com.gapps.oneone.utils.extensions.visibleOrGone
-import kotlinx.android.synthetic.main.activity_log_files_list.*
+import kotlinx.android.synthetic.main.activity_oo_log_files_list.*
 
 class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 	companion object {
@@ -33,7 +33,7 @@ class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_log_files_list)
+		setContentView(R.layout.activity_oo_log_files_list)
 
 		presenter.create(this)
 
@@ -89,7 +89,7 @@ class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 				}
 			})
 
-			addDivider(color(R.color.dividerColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset))
+			addDivider(color(R.color.colorDividerOOColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset))
 		}
 	}
 
@@ -105,12 +105,12 @@ class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 
 		BottomMenu.build {
 			with(this@LogFilesListActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {

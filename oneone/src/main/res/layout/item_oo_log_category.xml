@@ -9,7 +9,7 @@
 	android:paddingTop="20dp"
 	android:paddingBottom="20dp"
 	android:background="?selectableItemBackground"
-	tools:background="@color/colorPrimaryLog">
+	tools:background="@color/colorOOPrimaryLog">
 
 	<androidx.appcompat.widget.AppCompatImageView
 		android:id="@+id/log_indicator"

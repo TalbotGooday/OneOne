@@ -42,6 +42,13 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity-alias>
+
+		<provider
+			android:name=".OneOneInitProvider"
+			android:authorities="${applicationId}.oneoneinitprovider"
+			android:enabled="true"
+			android:exported="false" />
+
 	</application>
 
 </manifest>

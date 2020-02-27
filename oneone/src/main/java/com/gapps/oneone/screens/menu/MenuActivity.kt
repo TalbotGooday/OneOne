@@ -16,7 +16,7 @@ import com.gapps.oneone.utils.bottom_menu.MenuData
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
 import com.gapps.oneone.utils.sendTo
-import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.activity_oo_menu.*
 
 class MenuActivity : BaseActivity(), MenuContract.View {
 	companion object {
@@ -29,7 +29,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_menu)
+		setContentView(R.layout.activity_oo_menu)
 
 		initViews()
 	}
@@ -56,12 +56,12 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 
 		BottomMenu.build {
 			with(this@MenuActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(getMenuListener())
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun getMenuListener(): BottomMenu.Listener? {
@@ -95,8 +95,8 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 
 		BottomMenu.build {
 			with(this@MenuActivity)
-			withBackgroundColor(color(R.color.colorPrimaryLog))
-			withMainColor(color(R.color.colorPrimaryDarkLog))
+			withBackgroundColor(color(R.color.colorOOPrimaryLog))
+			withMainColor(color(R.color.colorOOPrimaryDarkLog))
 			withAccentColor(Color.WHITE)
 			withMenuData(menu)
 			withListener(object : BottomMenu.Listener {
@@ -115,7 +115,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 					sendTo(text = getAppInfoString())
 				}
 			})
-		}.showIfNotVisible()
+		}.show()
 	}
 
 	private fun openLogs() {

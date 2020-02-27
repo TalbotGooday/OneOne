@@ -4,22 +4,36 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimaryLog"
-	android:orientation="vertical">
+	android:background="@color/colorOOPrimaryLog"
+	android:orientation="vertical"
+	tools:context=".screens.log.log_messages.LogMessagesActivity">
 
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/colorPrimaryDarkLog">
+		android:background="@color/colorOOPrimaryDarkLog">
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="55dp"
-			android:fontFamily="@font/ps_medium"
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
 			android:gravity="center"
-			android:text="@string/log_files"
-			android:textColor="@android:color/white"
-			android:textSize="18sp" />
+			android:orientation="horizontal">
+
+			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/log_indicator"
+				android:layout_width="10dp"
+				android:layout_height="10dp"
+				app:srcCompat="@drawable/oo_log_indicator" />
+
+			<TextView
+				android:id="@+id/toolbar_title"
+				style="@style/ToolbarText"
+				android:layout_width="wrap_content"
+				android:layout_height="55dp"
+				android:layout_marginStart="8dp"
+				android:text="@string/log" />
+		</LinearLayout>
 
 		<androidx.appcompat.widget.AppCompatImageButton
 			android:id="@+id/more"
@@ -45,21 +59,20 @@
 		android:layout_height="match_parent">
 
 		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/logs_list"
+			android:id="@+id/log_list"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			tools:listitem="@layout/item_log_category" />
+			tools:listitem="@layout/item_oo_log" />
 
-		<com.gapps.oneone.utils.views.placeholder.EmptyListPlaceholder
+		<com.gapps.oneone.utils.views.placeholder.OOEmptyListPlaceholder
 			android:id="@+id/messages_placeholder"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:text="@string/no_log_files"
+			android:text="@string/no_log_messages"
 			android:visibility="gone"
-			android:tint="@color/white60"
-			android:textColor="@color/white60"
-			app:srcCompat="@drawable/ic_oo_console_file"
+			android:textColor="@color/colorWhiteOO60"
+			app:srcCompat="@drawable/ic_oo_console"
 			tools:visibility="visible" />
 	</FrameLayout>
 

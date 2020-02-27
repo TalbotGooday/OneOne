@@ -10,13 +10,13 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.gapps.oneone.R
-import kotlinx.android.synthetic.main.layout_placeholder.view.*
+import kotlinx.android.synthetic.main.layout_oo_placeholder.view.*
 
-class EmptyListPlaceholder @JvmOverloads constructor(
+class OOEmptyListPlaceholder @JvmOverloads constructor(
 		context: Context, private val attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 	init {
-		inflate(context, R.layout.layout_placeholder, this)
+		inflate(context, R.layout.layout_oo_placeholder, this)
 		initViews()
 	}
 
@@ -41,19 +41,19 @@ class EmptyListPlaceholder @JvmOverloads constructor(
 	}
 
 	private fun initViews() {
-		val a = context.obtainStyledAttributes(attrs, R.styleable.EmptyListPlaceholder)
+		val a = context.obtainStyledAttributes(attrs, R.styleable.OOEmptyListPlaceholder)
 		for (i in 0 until a.indexCount) {
 			when (val attr = a.getIndex(i)) {
-				R.styleable.EmptyListPlaceholder_srcCompat -> {
+				R.styleable.OOEmptyListPlaceholder_srcCompat -> {
 					setIcon(a.getResourceId(attr, 0))
 				}
-				R.styleable.EmptyListPlaceholder_android_text -> {
+				R.styleable.OOEmptyListPlaceholder_android_text -> {
 					setText(a.getString(attr))
 				}
-				R.styleable.EmptyListPlaceholder_android_textColor -> {
+				R.styleable.OOEmptyListPlaceholder_android_textColor -> {
 					setTextColor(a.getColor(attr, Color.parseColor("#99FFFFFF")))
 				}
-				R.styleable.EmptyListPlaceholder_android_tint -> {
+				R.styleable.OOEmptyListPlaceholder_android_tint -> {
 					setIconTint(a.getColor(attr, Color.parseColor("#99FFFFFF")))
 				}
 			}
