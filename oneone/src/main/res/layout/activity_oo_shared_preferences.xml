@@ -19,7 +19,7 @@
 			android:layout_marginEnd="@dimen/icon_size"
 			android:fontFamily="@font/ps_medium"
 			android:gravity="center"
-			android:text="@string/shared_prefs"
+			android:text="@string/oo_shared_prefs"
 			android:textColor="@android:color/white"
 			android:textSize="18sp" />
 

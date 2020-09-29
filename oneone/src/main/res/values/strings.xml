@@ -32,7 +32,8 @@
 	<string name="share_file">Share file</string>
 	<string name="time">Time</string>
 	<string name="menu">Menu</string>
-	<string name="shared_prefs">Shared Preferences</string>
+	<string name="oo_shared_prefs">Shared Preferences</string>
+	<string name="oo_databases">Databases</string>
 	<string name="copy_key">Copy key</string>
 	<string name="copy_value">Copy value</string>
 	<string name="copy_as_pair">Copy as pair</string>
@@ -43,5 +44,6 @@
 	<string name="cant_open_file">Can\'t open file</string>
 	<string name="edit">Edit</string>
 	<string name="enter_value">Enter a value</string>
+	<string name="log_logcat">Logcat</string>
 
 </resources>

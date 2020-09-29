@@ -1,7 +1,6 @@
 package com.gapps.oneone
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.gapps.oneone.models.log.FileModel
@@ -138,6 +137,14 @@ object OneOne {
 
 		message ?: return
 
+		helper.logWeb(type, tag, message)
+
 		addMessageToLog(ctx, type, message, tag ?: DEFAULT_TAG)
+	}
+
+	internal fun setLoggerBaseUrl(baseUrl: String?) {
+		baseUrl ?: return
+
+		helper.setLoggerBaseUrl(baseUrl)
 	}
 }

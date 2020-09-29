@@ -66,10 +66,14 @@ fun sendEmail(context: Context, email: String? = null, type: String? = null) {
 	emailIntent.putExtra(Intent.EXTRA_TEXT, context.getAppInfoString())
 
 	if (emailIntent.resolveActivity(context.packageManager) != null) {
-		context.startActivity(Intent.createChooser(emailIntent, "Send email...")
-				.apply {
-					addFlags(FLAG_ACTIVITY_NEW_TASK)
-				}, null)
+		try {
+			context.startActivity(Intent.createChooser(emailIntent, "Send email...")
+					.apply {
+						addFlags(FLAG_ACTIVITY_NEW_TASK)
+					}, null)
+		}catch (e: Exception){
+			e.printStackTrace()
+		}
 	}
 }
 

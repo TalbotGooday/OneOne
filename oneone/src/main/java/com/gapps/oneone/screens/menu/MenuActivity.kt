@@ -24,7 +24,11 @@ import kotlinx.android.synthetic.main.activity_oo_menu.*
 class MenuActivity : BaseActivity(), MenuContract.View {
 	companion object {
 		private const val GET_APP_INFO = 0
-
+		private val ID_LOG = 0
+		private val ID_LOG_FILES = 1
+		private val ID_LOGCAT = 2
+		private val ID_SP = 3
+		private val ID_DATABASES = 4
 		fun newInstance(context: Context) = Intent(context, MenuActivity::class.java)
 	}
 
@@ -51,9 +55,11 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 
 	private fun initMenuList() {
 		val menuData = listOf(
-				MenuItem(0, R.string.log, R.drawable.ic_oo_console),
-				MenuItem(1, R.string.log_files, R.drawable.ic_oo_console_file),
-				MenuItem(2, R.string.shared_prefs, R.drawable.ic_oo_file)
+				MenuItem(ID_LOG, R.string.log, R.drawable.ic_oo_console),
+				MenuItem(ID_LOG_FILES, R.string.log_files, R.drawable.ic_oo_console_file),
+				MenuItem(ID_LOGCAT, R.string.log_logcat, R.drawable.ic_oo_notes),
+				MenuItem(ID_SP, R.string.oo_shared_prefs, R.drawable.ic_oo_file),
+				MenuItem(ID_DATABASES, R.string.oo_databases, R.drawable.ic_oo_storage)
 		)
 
 		menu_list.apply {
@@ -61,9 +67,11 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 			adapter = MenuAdapter(object : MenuAdapter.Listener {
 				override fun onItemClick(item: MenuItem) {
 					when(item.id){
-						0 ->  openLogs()
-						1 ->  openLogFiles()
-						2 ->  openSharedPreferences()
+						ID_LOG ->  openLogs()
+						ID_LOG_FILES ->  openLogFiles()
+						ID_LOGCAT ->  openLogcat()
+						ID_SP ->  openSharedPreferences()
+						ID_DATABASES ->  openDatabases()
 					}
 				}
 			}).apply {
@@ -72,6 +80,14 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 
 			addDivider(color(R.color.colorDividerOOColor).toColorDrawable(resources.getDimensionPixelSize(R.dimen.divider_height)), inset = resources.getDimensionPixelSize(R.dimen.divider_inset_icon))
 		}
+	}
+
+	private fun openLogcat() {
+		
+	}
+
+	private fun openDatabases() {
+
 	}
 
 	private fun showMenu() {

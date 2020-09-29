@@ -155,14 +155,6 @@ fun Context.copyToClipboard(text: String, action: (() -> Unit)? = null) {
 	}
 }
 
-fun Context.openAppInMarket() {
-	val i = Intent(Intent.ACTION_VIEW)
-	i.data = Uri.parse("http://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}")
-	startActivity(i.apply {
-		addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-	}, null)
-}
-
 fun Context.openLink(link: String) {
 	val i = Intent(Intent.ACTION_VIEW)
 	i.data = Uri.parse(link)
@@ -197,13 +189,12 @@ fun Context.getAppInfoMap(): Map<String, String> {
 
 	val sPackName: String = this.applicationContext.packageName
 
-	val nSdkVersion = Build.VERSION.SDK_INT.toString()
 
 	return mapOf(
 			VERSION_CODE to sVersionCode,
 			VERSION_NAME to sVersionName,
 			PACKAGE_NAME to sPackName,
-			VERSION_ANDROID to "${Build.VERSION.RELEASE} (SDK: $nSdkVersion)",
+			VERSION_ANDROID to "${Build.VERSION.RELEASE} (SDK: ${Build.VERSION.SDK_INT})",
 			PHONE to "${Build.MANUFACTURER} ${Build.MODEL}"
 	)
 }
