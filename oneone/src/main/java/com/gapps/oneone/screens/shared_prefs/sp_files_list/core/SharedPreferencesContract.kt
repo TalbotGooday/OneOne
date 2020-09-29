@@ -4,7 +4,7 @@ import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
 import com.gapps.oneone.screens.base.BasePresenter
 import com.gapps.oneone.screens.base.BaseView
 
-interface SharedPreferencesContract {
+internal interface SharedPreferencesContract {
 	interface View : BaseView<Presenter> {
 		fun onGotSharedPreferencesFiles(data: List<SharedPrefsFileModel>)
 	}

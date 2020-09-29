@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 
-class MenuData {
+internal class MenuData {
 	var title: String? = null
 	@StringRes
 	var titleRes: Int? = null

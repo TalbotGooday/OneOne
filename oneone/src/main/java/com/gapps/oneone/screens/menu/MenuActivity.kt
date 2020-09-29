@@ -19,16 +19,19 @@ import com.gapps.oneone.utils.bottom_menu.MenuData
 import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
 import com.gapps.oneone.utils.sendTo
+import com.gapps.oneone.utils.views.dialog.InputDialog
 import kotlinx.android.synthetic.main.activity_oo_menu.*
 
-class MenuActivity : BaseActivity(), MenuContract.View {
+internal class MenuActivity : BaseActivity(), MenuContract.View {
 	companion object {
 		private const val GET_APP_INFO = 0
-		private val ID_LOG = 0
-		private val ID_LOG_FILES = 1
-		private val ID_LOGCAT = 2
-		private val ID_SP = 3
-		private val ID_DATABASES = 4
+		private const val LOGGER_URL = 1
+		private const val ID_LOG = 0
+		private const val ID_LOG_FILES = 1
+		private const val ID_LOGCAT = 2
+		private const val ID_SP = 3
+		private const val ID_DATABASES = 4
+
 		fun newInstance(context: Context) = Intent(context, MenuActivity::class.java)
 	}
 
@@ -57,21 +60,21 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 		val menuData = listOf(
 				MenuItem(ID_LOG, R.string.log, R.drawable.ic_oo_console),
 				MenuItem(ID_LOG_FILES, R.string.log_files, R.drawable.ic_oo_console_file),
-				MenuItem(ID_LOGCAT, R.string.log_logcat, R.drawable.ic_oo_notes),
+//				MenuItem(ID_LOGCAT, R.string.log_logcat, R.drawable.ic_oo_notes),
 				MenuItem(ID_SP, R.string.oo_shared_prefs, R.drawable.ic_oo_file),
-				MenuItem(ID_DATABASES, R.string.oo_databases, R.drawable.ic_oo_storage)
+//				MenuItem(ID_DATABASES, R.string.oo_databases, R.drawable.ic_oo_storage)
 		)
 
 		menu_list.apply {
 			layoutManager = LinearLayoutManager(this@MenuActivity)
 			adapter = MenuAdapter(object : MenuAdapter.Listener {
 				override fun onItemClick(item: MenuItem) {
-					when(item.id){
-						ID_LOG ->  openLogs()
-						ID_LOG_FILES ->  openLogFiles()
-						ID_LOGCAT ->  openLogcat()
-						ID_SP ->  openSharedPreferences()
-						ID_DATABASES ->  openDatabases()
+					when (item.id) {
+						ID_LOG -> openLogs()
+						ID_LOG_FILES -> openLogFiles()
+						ID_LOGCAT -> openLogcat()
+						ID_SP -> openSharedPreferences()
+						ID_DATABASES -> openDatabases()
 					}
 				}
 			}).apply {
@@ -83,7 +86,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 	}
 
 	private fun openLogcat() {
-		
+
 	}
 
 	private fun openDatabases() {
@@ -94,6 +97,7 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 		val menu = MenuData().apply {
 			titleRes = R.string.select_action
 			addMenu(R.drawable.ic_oo_phone, R.string.app_info, GET_APP_INFO)
+			addMenu(R.drawable.ic_oo_cloud_upload, R.string.web_logger_url, LOGGER_URL)
 		}
 
 		BottomMenu.build {
@@ -113,6 +117,9 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 					GET_APP_INFO -> {
 						showAppInfo()
 					}
+					LOGGER_URL -> {
+						showLoggerUrlDialog()
+					}
 				}
 			}
 
@@ -122,6 +129,20 @@ class MenuActivity : BaseActivity(), MenuContract.View {
 			override fun onAdditionalClick() {
 			}
 		}
+	}
+
+	private fun showLoggerUrlDialog() {
+		InputDialog(
+				this,
+				getString(R.string.web_logger_url),
+				getString(android.R.string.ok),
+				getString(android.R.string.cancel),
+				::onUrlChanged
+		).show()
+	}
+
+	private fun onUrlChanged(newUrl: String) {
+		presenter.saveNewLoggerUrl(newUrl)
 	}
 
 	private fun showAppInfo() {

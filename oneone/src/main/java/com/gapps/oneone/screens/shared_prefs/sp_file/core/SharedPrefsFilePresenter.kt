@@ -6,7 +6,7 @@ import com.gapps.oneone.models.shared_prefs.SharedPrefEntry
 import com.gapps.oneone.screens.base.BaseAPresenter
 import java.util.*
 
-class SharedPrefsFilePresenter : SharedPrefsFileContract.Presenter, BaseAPresenter() {
+internal class SharedPrefsFilePresenter : SharedPrefsFileContract.Presenter, BaseAPresenter() {
 	override lateinit var view: SharedPrefsFileContract.View
 	private lateinit var context: Context
 

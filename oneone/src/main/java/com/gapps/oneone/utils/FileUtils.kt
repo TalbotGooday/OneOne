@@ -6,10 +6,10 @@ import com.gapps.oneone.models.log.FileModel
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
 import com.gapps.oneone.utils.extensions.getAppInfoString
-import com.gapps.oneone.utils.time.FastDateFormat
 import com.google.gson.Gson
 import java.io.File
 import java.nio.charset.Charset
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -27,6 +27,9 @@ const val WARNING = "OO_LOG_W"
 const val ERROR = "OO_LOG_E"
 const val INFO = "OO_LOG_I"
 const val VERBOSE = "OO_LOG_V"
+
+const val ONE_ONE_SP_NAME = "one.one.sp"
+const val ONE_ONE_LOGGER_URL = "logger_url"
 
 fun initLogFilesAndDirs(context: Context) {
 	val oneOneFolder = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
@@ -198,7 +201,7 @@ fun Context.getAllSharedPreferences(): List<SharedPrefsFileModel> {
 			SharedPrefsFileModel().apply {
 				this.name = it
 			}
-		} ?: emptyList()
+		}?.filter { it.name != ONE_ONE_SP_NAME } ?: emptyList()
 	} else {
 		emptyList()
 	}
@@ -211,7 +214,7 @@ fun writeTextToLogFile(context: Context, text: String, withAdditionalPhoneInfo: 
 		logDir.mkdir()
 	}
 
-	val fileName = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH).format(System.currentTimeMillis())
+	val fileName = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH).format(System.currentTimeMillis())
 	val logFile = File(logDir, "$fileName.log")
 
 	if (logFile.exists().not()) {

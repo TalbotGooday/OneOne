@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SharedPreferencesPresenter : SharedPreferencesContract.Presenter, BaseAPresenter() {
+internal class SharedPreferencesPresenter : SharedPreferencesContract.Presenter, BaseAPresenter() {
 	override lateinit var view: SharedPreferencesContract.View
 	private lateinit var context: Context
 

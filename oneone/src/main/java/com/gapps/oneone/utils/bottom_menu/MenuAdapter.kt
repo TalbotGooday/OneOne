@@ -12,7 +12,7 @@ import com.gapps.oneone.utils.extensions.animateBottomTop
 import kotlinx.android.synthetic.main.item_oo_bottom_menu_small.view.*
 import java.util.*
 
-class MenuAdapter(
+internal class MenuAdapter(
 		@ColorInt private val iconsColor: Int,
 		@ColorInt private val textColor: Int,
 		private val listener: Listener

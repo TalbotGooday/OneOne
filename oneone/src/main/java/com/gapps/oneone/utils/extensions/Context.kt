@@ -27,47 +27,21 @@ import com.gapps.oneone.R
 import java.lang.StringBuilder
 
 
-inline fun Context.debug(code: () -> Unit) {
+internal inline fun Context.debug(code: () -> Unit) {
 	if (BuildConfig.DEBUG) {
 		code()
 	}
 }
 
-@JvmOverloads
-fun Context.toast(text: String, duration: Int = Toast.LENGTH_LONG) {
-	Toast.makeText(this, text, duration).show()
-}
-
-fun Context.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_LONG) {
+internal fun Context.toast(@StringRes resId: Int, duration: Int = Toast.LENGTH_LONG) {
 	Toast.makeText(this, resId, duration).show()
 }
 
-fun Context.convertDpToPixel(dp: Int): Int {
-	val metrics = resources.displayMetrics
-	return dp * (metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
-}
-
-fun Context.intentSafe(intent: Intent): Boolean {
-	val activities = packageManager
-			.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-	return activities.isNotEmpty()
-}
-
-fun Context.color(@ColorRes colorRes: Int): Int {
+internal fun Context.color(@ColorRes colorRes: Int): Int {
 	return ContextCompat.getColor(this, colorRes)
 }
 
-fun Context.quantity(@PluralsRes plural: Int, value: Int?): String {
-	return this.resources.getQuantityString(plural, value ?: 0, value ?: 0)
-}
-
-fun Context.setSystemBarColor(@ColorRes color: Int) {
-	val colorInt = ContextCompat.getColor(this, color)
-
-	setSystemBarColorInt(colorInt)
-}
-
-fun Context.setSystemBarColorInt(colorInt: Int) {
+internal fun Context.setSystemBarColorInt(colorInt: Int) {
 	val activity = this as? Activity ?: if (this is Fragment) this.activity else null
 	activity ?: return
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -78,31 +52,7 @@ fun Context.setSystemBarColorInt(colorInt: Int) {
 	}
 }
 
-fun Context.setSystemBarLight() {
-	val activity = this as? AppCompatActivity ?: if (this is Fragment) this.activity else null
-	activity ?: return
-
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-		val view = activity.findViewById<View>(android.R.id.content)
-		var flags = view.systemUiVisibility
-		flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-		view.systemUiVisibility = flags
-	}
-}
-
-fun Context.clearSystemBarLight() {
-	val activity = this as? AppCompatActivity ?: if (this is Fragment) this.activity else null
-	activity ?: return
-
-	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-		val view = activity.findViewById<View>(android.R.id.content)
-		var flags = view.systemUiVisibility
-		flags = flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-		view.systemUiVisibility = flags
-	}
-}
-
-fun Context.hideKeyboard(textView: TextView? = null) {
+internal fun Context.hideKeyboard(textView: TextView? = null) {
 	val view = if (textView == null) {
 		val activity = this as? Activity ?: if (this is Fragment) this.activity else null
 		activity ?: return
@@ -116,7 +66,7 @@ fun Context.hideKeyboard(textView: TextView? = null) {
 	}
 }
 
-fun Context.showKeyboard(textView: TextView? = null) {
+internal fun Context.showKeyboard(textView: TextView? = null) {
 	val view = if (textView == null) {
 		val activity = this as? Activity ?: if (this is Fragment) this.activity else null
 		activity ?: return
@@ -130,23 +80,7 @@ fun Context.showKeyboard(textView: TextView? = null) {
 	}
 }
 
-
-fun View?.subscribeKeyboardEvent(action: (Boolean) -> Unit) {
-	val fragmentView = this ?: return
-
-	fragmentView.viewTreeObserver?.addOnGlobalLayoutListener {
-		val r = Rect()
-		fragmentView.getWindowVisibleDisplayFrame(r)
-		val screenHeight = fragmentView.rootView.height
-		val keypadHeight = screenHeight - r.bottom
-
-		val keyBoardIsOpened = keypadHeight > screenHeight * 0.15
-		action.invoke(keyBoardIsOpened)
-	}
-}
-
-
-fun Context.copyToClipboard(text: String, action: (() -> Unit)? = null) {
+internal fun Context.copyToClipboard(text: String, action: (() -> Unit)? = null) {
 	val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
 	val clip = ClipData.newPlainText("HCMessageText", text)
 	if (clipboard != null) {
@@ -155,29 +89,7 @@ fun Context.copyToClipboard(text: String, action: (() -> Unit)? = null) {
 	}
 }
 
-fun Context.openLink(link: String) {
-	val i = Intent(Intent.ACTION_VIEW)
-	i.data = Uri.parse(link)
-	startActivity(i.apply {
-		addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-	}, null)
-}
-
-fun Context.getClipboardText(): String {
-	val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-
-	val primaryClip = clipboard.primaryClip
-
-	val clipboardTmpText = if (primaryClip != null && primaryClip.itemCount > 0) {
-		primaryClip.getItemAt(0)?.text?.toString()
-	} else {
-		null
-	}
-
-	return clipboardTmpText ?: "(▰˘◡˘▰)"
-}
-
-fun Context.getAppInfoMap(): Map<String, String> {
+internal fun Context.getAppInfoMap(): Map<String, String> {
 	val packageInfo: PackageInfo = this.packageManager.getPackageInfo(this.applicationContext.packageName, 0)
 	val sVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 		packageInfo.longVersionCode.toString()
@@ -199,7 +111,7 @@ fun Context.getAppInfoMap(): Map<String, String> {
 	)
 }
 
-fun Context.getAppInfoMapLocalized(): Map<String, String> {
+internal fun Context.getAppInfoMapLocalized(): Map<String, String> {
 	fun getTitleByInfoKey(key: String): String {
 		return when (key) {
 			VERSION_CODE -> getString(R.string.version_code)
@@ -217,7 +129,7 @@ fun Context.getAppInfoMapLocalized(): Map<String, String> {
 	}.toMap()
 }
 
-fun Context.getAppInfoString(): String {
+internal fun Context.getAppInfoString(): String {
 	val builder = StringBuilder()
 
 	getAppInfoMapLocalized().entries.forEach {

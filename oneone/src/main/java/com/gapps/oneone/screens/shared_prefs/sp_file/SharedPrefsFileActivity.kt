@@ -18,7 +18,7 @@ import com.gapps.oneone.utils.extensions.*
 import com.gapps.oneone.utils.views.dialog.SpEditorDialog
 import kotlinx.android.synthetic.main.activity_oo_shared_prefs_file.*
 
-class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
+internal class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
 	companion object {
 		private const val FILE_NAME = "file_name"
 

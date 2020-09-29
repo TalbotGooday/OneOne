@@ -31,49 +31,14 @@
 				android:textColor="@android:color/white"
 				tools:text="Invitation" />
 
-			<LinearLayout
-				android:id="@+id/message"
+			<androidx.appcompat.widget.AppCompatEditText
+				android:id="@+id/text_editor"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/spacing_medium"
-				android:orientation="vertical">
-
-				<RadioGroup
-					android:id="@+id/boolean_editor"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content">
-
-					<androidx.appcompat.widget.AppCompatRadioButton
-						android:id="@+id/radio_true"
-						android:layout_width="match_parent"
-						android:textColor="@android:color/white"
-						android:layout_height="wrap_content"
-						android:fontFamily="@font/ps_light"
-						android:text="true"
-						app:buttonTint="@color/colorGrayOO800"
-						android:checked="true"/>
-
-					<androidx.appcompat.widget.AppCompatRadioButton
-						android:id="@+id/radio_false"
-						android:layout_width="match_parent"
-						android:textColor="@android:color/white"
-						android:layout_height="wrap_content"
-						app:buttonTint="@color/colorGrayOO800"
-						android:fontFamily="@font/ps_light"
-						android:text="false" />
-
-				</RadioGroup>
-
-				<androidx.appcompat.widget.AppCompatEditText
-					android:id="@+id/text_editor"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:fontFamily="@font/ps_light"
-					android:textColor="@android:color/white"
-					android:hint="@string/enter_value"
-					android:textCursorDrawable="@null"/>
-			</LinearLayout>
-
+				android:layout_marginTop="12dp"
+				android:fontFamily="@font/ps_light"
+				android:hint="@string/enter_value"
+				android:textColor="@android:color/white" />
 		</LinearLayout>
 
 		<LinearLayout

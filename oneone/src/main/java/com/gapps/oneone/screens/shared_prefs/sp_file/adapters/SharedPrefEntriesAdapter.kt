@@ -8,7 +8,7 @@ import com.gapps.oneone.R
 import com.gapps.oneone.models.shared_prefs.SharedPrefEntry
 import kotlinx.android.synthetic.main.item_oo_sp_entry.view.*
 
-class SharedPrefEntriesAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefEntriesAdapter.Holder>() {
+internal class SharedPrefEntriesAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefEntriesAdapter.Holder>() {
 
 	private var data: MutableList<SharedPrefEntry> = mutableListOf()
 

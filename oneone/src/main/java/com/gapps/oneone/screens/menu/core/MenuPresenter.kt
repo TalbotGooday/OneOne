@@ -1,9 +1,9 @@
 package com.gapps.oneone.screens.menu.core
 
 import android.content.Context
-import com.gapps.oneone.screens.menu.core.MenuContract
+import com.gapps.oneone.OneOne
 
-class MenuPresenter : MenuContract.Presenter {
+internal class MenuPresenter : MenuContract.Presenter {
 	override lateinit var view: MenuContract.View
 	private lateinit var context: Context
 
@@ -13,6 +13,10 @@ class MenuPresenter : MenuContract.Presenter {
 		if (context is MenuContract.View) {
 			this.view = context
 		}
+	}
+
+	override fun saveNewLoggerUrl(newUrl: String) {
+		OneOne.setLoggerBaseUrl(newUrl, true)
 	}
 
 	override fun destroy() {

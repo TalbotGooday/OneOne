@@ -26,6 +26,9 @@
 		<meta-data
 			android:name="com.gapps.oneone.BASE_URL"
 			android:value="http://b552f4eb5c72.ngrok.io" />
+		<meta-data
+			android:name="com.gapps.oneone.BASE_URL.force"
+			android:value="false" />
 	</application>
 
 </manifest>

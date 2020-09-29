@@ -16,7 +16,7 @@ import com.gapps.oneone.utils.extensions.*
 import com.gapps.oneone.utils.views.bottom_dialog.BottomSheetDialogFixed
 import kotlinx.android.synthetic.main.layout_menu_bottom.view.*
 
-class BottomMenu(val context: Context?,
+internal class BottomMenu(val context: Context?,
                  @ColorInt val mainColor: Int,
                  @ColorInt val backgroundColor: Int,
                  @ColorInt val accentColor: Int,

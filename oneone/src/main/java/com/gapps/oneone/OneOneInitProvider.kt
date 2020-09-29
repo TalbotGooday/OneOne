@@ -23,8 +23,9 @@ class OneOneInitProvider : ContentProvider() {
 	private fun getLoggerBaseUrl(context: Context) {
 		val metaData = context.packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA).metaData
 		val endpoint = metaData.getString("com.gapps.oneone.BASE_URL")
+		val force = metaData.getBoolean("com.gapps.oneone.BASE_URL.force")
 
-		OneOne.setLoggerBaseUrl(endpoint)
+		OneOne.setLoggerBaseUrl(endpoint, force)
 	}
 
 	override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? {

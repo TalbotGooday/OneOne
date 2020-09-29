@@ -9,7 +9,7 @@ import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
 import kotlinx.android.synthetic.main.item_oo_file.view.*
 
 
-class SharedPrefsAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefsAdapter.Holder>() {
+internal class SharedPrefsAdapter(private val listener: Listener) : RecyclerView.Adapter<SharedPrefsAdapter.Holder>() {
 
 	private var data: MutableList<SharedPrefsFileModel> = mutableListOf()
 

@@ -41,7 +41,7 @@ class OneOneHelper : CoroutineScope {
 
 	fun setLoggerBaseUrl(baseUrl: String) {
 		val okHttpClient = provideHttpClient()
-		gson = provideGson()
+		gson = gson ?: provideGson()
 
 		api = provideRetrofit(baseUrl, requireNotNull(gson), okHttpClient)
 	}
@@ -96,5 +96,4 @@ class OneOneHelper : CoroutineScope {
 
 		return retrofit.create(Api::class.java)
 	}
-
 }

@@ -10,6 +10,7 @@
 	<string name="type">Type</string>
 	<string name="log_message">Log Message</string>
 	<string name="app_info">Application Info</string>
+	<string name="web_logger_url">Change Logger URL</string>
 	<string name="copied">Copied</string>
 	<string name="send">Send</string>
 	<string name="version_code">Version code</string>

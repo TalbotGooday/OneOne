@@ -147,9 +147,21 @@ object OneOne {
 		addMessageToLog(ctx, type, message, tag ?: DEFAULT_TAG)
 	}
 
-	fun setLoggerBaseUrl(baseUrl: String?) {
+	fun setLoggerBaseUrl(baseUrl: String?, force: Boolean = false) {
+		val context = context ?: return
+
 		baseUrl ?: return
 
-		helper.setLoggerBaseUrl(baseUrl)
+		val sp = context.getSharedPreferences(ONE_ONE_SP_NAME, Context.MODE_PRIVATE)
+
+		val savedUrl = if (force) {
+			baseUrl
+		} else {
+			sp.getString(ONE_ONE_LOGGER_URL, baseUrl) ?: baseUrl
+		}
+
+		helper.setLoggerBaseUrl(savedUrl)
+
+		sp.edit().putString(ONE_ONE_LOGGER_URL, savedUrl).apply()
 	}
 }

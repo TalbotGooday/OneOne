@@ -12,7 +12,7 @@ import com.gapps.oneone.models.menu.MenuItem
 import kotlinx.android.synthetic.main.item_oo_menu.view.*
 
 
-class MenuAdapter(private val listener: Listener) : RecyclerView.Adapter<MenuAdapter.Holder>() {
+internal class MenuAdapter(private val listener: Listener) : RecyclerView.Adapter<MenuAdapter.Holder>() {
 
 	private var data: MutableList<MenuItem> = mutableListOf()
 
