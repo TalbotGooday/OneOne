@@ -155,11 +155,13 @@ fun clearLogMessages(context: Context, type: String? = null) {
 
 fun clearLogFiles(context: Context) {
 	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
-	if (logDir.exists().not() || logDir.isDirectory.not() || logDir.listFiles().isNullOrEmpty()) {
+	val listFiles = logDir.listFiles()
+
+	if (logDir.exists().not() || logDir.isDirectory.not() || listFiles.isNullOrEmpty()) {
 		return
 	}
 
-	for (f: File in logDir.listFiles()) {
+	for (f: File in listFiles) {
 		if (!f.isDirectory) {
 			f.delete();
 		}

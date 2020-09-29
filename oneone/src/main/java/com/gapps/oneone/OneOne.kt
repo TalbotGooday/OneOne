@@ -8,6 +8,7 @@ import com.gapps.oneone.models.log.LogFileModel
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.screens.menu.MenuActivity
 import com.gapps.oneone.utils.*
+import com.gapps.oneone.utils.extensions.getAppInfoMap
 import com.gapps.oneone.utils.extensions.printOneOne
 
 
@@ -21,8 +22,12 @@ object OneOne {
 	private var context: Context? = null
 	private val helper = OneOneHelper()
 
+	var appInfo: Map<String, String> = emptyMap()
+		private set
+
 	internal fun init(context: Context) {
 		this.context = context
+		appInfo = context.getAppInfoMap()
 
 		initCrashLogger()
 

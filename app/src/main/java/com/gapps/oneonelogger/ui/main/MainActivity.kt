@@ -12,6 +12,7 @@ import com.gapps.oneonelogger.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.lang.Exception
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 				}catch (e: Exception){
 					e.printOneOneLogFile()
 				}
+
 				true
 			}
 			else -> super.onOptionsItemSelected(item)

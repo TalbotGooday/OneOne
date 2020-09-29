@@ -32,7 +32,7 @@ class LogOutModel() {
 
 	constructor(tag: String, message: String, time: String, type: String) : this() {
 		this.tag = tag
-		this.message = tag
+		this.message = message
 		this.time = time
 		this.type = type
 	}

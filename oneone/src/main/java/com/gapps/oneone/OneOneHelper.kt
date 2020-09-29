@@ -2,6 +2,7 @@ package com.gapps.oneone
 
 import android.content.Context
 import com.gapps.oneone.api.Api
+import com.gapps.oneone.api.ServiceInterceptor
 import com.gapps.oneone.api.models.LogOutModel
 import com.gapps.oneone.utils.*
 import com.google.gson.FieldNamingPolicy
@@ -45,34 +46,6 @@ class OneOneHelper : CoroutineScope {
 		api = provideRetrofit(baseUrl, requireNotNull(gson), okHttpClient)
 	}
 
-	@JvmOverloads
-	fun d(tag: String? = null, message: Any?) {
-		val gson = gson ?: return
-
-		sendLogEvent(LogOutModel.create(gson, DEBUG, message, tag))
-	}
-
-	@JvmOverloads
-	fun w(tag: String? = null, message: Any?) {
-		val gson = gson ?: return
-
-		sendLogEvent(LogOutModel.create(gson, WARNING, message, tag))
-	}
-
-	@JvmOverloads
-	fun v(tag: String? = null, message: Any?) {
-		val gson = gson ?: return
-
-		sendLogEvent(LogOutModel.create(gson, VERBOSE, message, tag))
-	}
-
-	@JvmOverloads
-	fun e(tag: String? = null, message: Any?) {
-		val gson = gson ?: return
-
-		sendLogEvent(LogOutModel.create(gson, ERROR, message, tag))
-	}
-
 	fun logWeb(type: String, tag: String? = null, message: Any?) {
 		val gson = gson ?: return
 
@@ -101,6 +74,7 @@ class OneOneHelper : CoroutineScope {
 
 		return OkHttpClient.Builder()
 				.addInterceptor(httpLoggingInterceptor)
+				.addInterceptor(ServiceInterceptor())
 				.connectTimeout(15, TimeUnit.MINUTES)
 				.readTimeout(15, TimeUnit.MINUTES)
 				.writeTimeout(15, TimeUnit.MINUTES)
@@ -113,7 +87,7 @@ class OneOneHelper : CoroutineScope {
 				.create()
 	}
 
-	fun provideRetrofit(baseUrl: String, factory: Gson, client: OkHttpClient): Api {
+	private fun provideRetrofit(baseUrl: String, factory: Gson, client: OkHttpClient): Api {
 		val retrofit = Retrofit.Builder()
 				.baseUrl(baseUrl)
 				.addConverterFactory(GsonConverterFactory.create(factory))
