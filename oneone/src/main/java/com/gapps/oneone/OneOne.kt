@@ -147,7 +147,7 @@ object OneOne {
 		addMessageToLog(ctx, type, message, tag ?: DEFAULT_TAG)
 	}
 
-	internal fun setLoggerBaseUrl(baseUrl: String?) {
+	fun setLoggerBaseUrl(baseUrl: String?) {
 		baseUrl ?: return
 
 		helper.setLoggerBaseUrl(baseUrl)
