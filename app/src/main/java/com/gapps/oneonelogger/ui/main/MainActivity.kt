@@ -12,7 +12,7 @@ import com.gapps.oneonelogger.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.lang.Exception
-import java.lang.RuntimeException
+import kotlin.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,11 +53,14 @@ class MainActivity : AppCompatActivity() {
 				OneOne.w("MainActivity","action_see_log")
 //				startActivity(Intent(this, LogActivity::class.java))
 				OneOne.openLog(this)
+				OneOne.d("A", "open")
 				true
 			}
 			R.id.action_write_log ->{
+				throw RuntimeException("AAAAAAAAA")
 				try {
 					File(cacheDir, "asdfasdf/asdf/asdfasdfasdf").writeText("sasdf")
+
 				}catch (e: Exception){
 					e.printOneOneLogFile()
 				}

@@ -18,7 +18,7 @@ import com.gapps.oneone.utils.extensions.*
 import com.gapps.oneone.utils.views.dialog.SpEditorDialog
 import kotlinx.android.synthetic.main.activity_oo_shared_prefs_file.*
 
-internal class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract.View {
+internal class SharedPrefsFileActivity : BaseActivity(R.layout.activity_oo_shared_prefs_file), SharedPrefsFileContract.View {
 	companion object {
 		private const val FILE_NAME = "file_name"
 
@@ -39,7 +39,6 @@ internal class SharedPrefsFileActivity : BaseActivity(), SharedPrefsFileContract
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_shared_prefs_file)
 
 		presenter.create(this)
 

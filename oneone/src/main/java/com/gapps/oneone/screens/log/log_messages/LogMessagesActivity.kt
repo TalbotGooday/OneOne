@@ -19,7 +19,7 @@ import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_oo_log_messages.*
 
-class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
+class LogMessagesActivity : BaseActivity(R.layout.activity_oo_log_messages), LogMessagesContract.View {
 	companion object {
 		private const val TITLE = "title"
 		private const val TYPE = "type"
@@ -38,7 +38,6 @@ class LogMessagesActivity : BaseActivity(), LogMessagesContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_log_messages)
 
 		presenter.create(this)
 

@@ -6,11 +6,12 @@ import com.gapps.oneone.models.log.FileModel
 import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.models.shared_prefs.SharedPrefsFileModel
 import com.gapps.oneone.utils.extensions.getAppInfoString
+import com.gapps.oneone.utils.extensions.toUTC
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.nio.charset.Charset
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 const val FOLDER_ONE_ONE = "one_one"
@@ -27,6 +28,7 @@ const val WARNING = "OO_LOG_W"
 const val ERROR = "OO_LOG_E"
 const val INFO = "OO_LOG_I"
 const val VERBOSE = "OO_LOG_V"
+const val FATAL = "OO_LOG_F"
 
 const val ONE_ONE_SP_NAME = "one.one.sp"
 const val ONE_ONE_LOGGER_URL = "logger_url"
@@ -136,18 +138,29 @@ fun getFilesMap(context: Context, type: String? = null): MutableMap<String, File
 	return files
 }
 
-fun getLogFilesList(context: Context): List<FileModel> {
+fun getLogFilesList(context: Context, predicate: ((String) -> Boolean)? = { true }): List<FileModel> {
 	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
 	if (logDir.exists().not() || logDir.isDirectory.not()) {
 		return emptyList()
 	}
 
-	return logDir.list()?.mapNotNull {
+	return logDir.list()?.filter { predicate?.invoke(it) ?: true }?.mapNotNull {
 		FileModel().apply {
 			this.name = it
 			this.path = "${logDir.path}/$it"
+			this.text = File(this.path).let { file ->
+				if (file.exists().not()) {
+					null
+				} else {
+					file.readText()
+				}
+			} ?: return@mapNotNull null
 		}
-	} ?: emptyList()
+	}?.sortedByDescending { it.name } ?: emptyList()
+}
+
+suspend fun getLastCrashFilesText(context: Context): Map<String, FileModel> = withContext(Dispatchers.IO) {
+	getLogFilesList(context) { it.endsWith(".crash") }.map { it.name to it }.toMap()
 }
 
 fun clearLogMessages(context: Context, type: String? = null) {
@@ -185,7 +198,7 @@ fun createLogModel(type: String, messageB64: String): LogModel? {
 	val messageBytes = Base64.decode(messageB64, Base64.NO_WRAP)
 
 	return try {
-		Gson().fromJson<LogModel>(String(messageBytes, Charset.forName("UTF-8")), LogModel::class.java).apply {
+		Gson().fromJson(String(messageBytes, Charset.forName("UTF-8")), LogModel::class.java).apply {
 			this.type = type
 		}
 	} catch (e: Exception) {
@@ -207,15 +220,23 @@ fun Context.getAllSharedPreferences(): List<SharedPrefsFileModel> {
 	}
 }
 
-fun writeTextToLogFile(context: Context, text: String, withAdditionalPhoneInfo: Boolean = false) {
+fun writeTextToLogFile(
+		context: Context,
+		text: String,
+		withAdditionalPhoneInfo: Boolean = false,
+		isCrash: Boolean = false,
+) {
 	val logDir = File(context.cacheDir, "$FOLDER_ONE_ONE/$FOLDER_LOG")
 
 	if (logDir.exists().not()) {
 		logDir.mkdir()
 	}
 
-	val fileName = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.ENGLISH).format(System.currentTimeMillis())
-	val logFile = File(logDir, "$fileName.log")
+	val fileName = System.currentTimeMillis().toUTC().let {
+		if (isCrash) "$it.crash" else "$it.log"
+	}
+
+	val logFile = File(logDir, fileName)
 
 	if (logFile.exists().not()) {
 		logFile.createNewFile()

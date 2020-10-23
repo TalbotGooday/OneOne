@@ -9,6 +9,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gapps.oneone.R
 import com.gapps.oneone.models.log.FileModel
+import com.gapps.oneone.screens.base.BaseActivity
 import com.gapps.oneone.screens.log.log_file.core.LogFileContract
 import com.gapps.oneone.screens.log.log_file.core.LogFilePresenter
 import com.gapps.oneone.utils.bottom_menu.BottomMenu
@@ -19,7 +20,7 @@ import com.gapps.oneone.utils.extensions.toast
 import com.gapps.oneone.utils.sendTo
 import kotlinx.android.synthetic.main.activity_oo_log_file.*
 
-class LogFileActivity : AppCompatActivity(), LogFileContract.View {
+class LogFileActivity : BaseActivity(R.layout.activity_oo_log_file), LogFileContract.View {
 	companion object {
 		private const val PATH = "path"
 		private const val FILE_NAME = "name"
@@ -40,7 +41,6 @@ class LogFileActivity : AppCompatActivity(), LogFileContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_log_file)
 
 		val path = intent.getStringExtra(PATH)
 

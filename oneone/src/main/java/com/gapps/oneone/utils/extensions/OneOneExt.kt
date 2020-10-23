@@ -12,12 +12,15 @@ fun Throwable.printOneOne(tag: String? = null) {
 	OneOne.e(tag ?: OneOne.DEFAULT_TAG, sw.toString())
 }
 
-fun Throwable.printOneOneLogFile(withAdditionalPhoneInfo: Boolean = true) {
+fun Throwable.printOneOneLogFile(
+		withAdditionalPhoneInfo: Boolean = true,
+		isCrash: Boolean = false,
+) {
 	val sw = StringWriter()
 	val pw = PrintWriter(sw)
 	this.printStackTrace(pw)
 
-	OneOne.writeToLogFile(sw.toString(), withAdditionalPhoneInfo)
+	OneOne.writeToLogFile(sw.toString(), withAdditionalPhoneInfo, isCrash)
 }
 
 fun Any?.logDOneOne(tag: String? = null) {

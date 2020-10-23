@@ -11,7 +11,7 @@ import com.gapps.oneone.screens.log.log_details.core.LogDetailsPresenter
 import com.gapps.oneone.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_oo_log_details.*
 
-class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
+class LogDetailsActivity : BaseActivity(R.layout.activity_oo_log_details), LogDetailsContract.View {
 	companion object {
 		private const val ITEM = "item"
 
@@ -24,7 +24,6 @@ class LogDetailsActivity : BaseActivity(), LogDetailsContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_log_details)
 
 		initViews()
 	}

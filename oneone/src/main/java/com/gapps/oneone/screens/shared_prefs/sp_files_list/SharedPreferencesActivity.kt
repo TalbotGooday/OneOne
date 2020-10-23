@@ -21,7 +21,7 @@ import com.gapps.oneone.utils.extensions.toColorDrawable
 import com.gapps.oneone.utils.extensions.visibleOrGone
 import kotlinx.android.synthetic.main.activity_oo_shared_preferences.*
 
-internal class SharedPreferencesActivity : BaseActivity(), SharedPreferencesContract.View {
+internal class SharedPreferencesActivity : BaseActivity(R.layout.activity_oo_shared_preferences), SharedPreferencesContract.View {
 	companion object {
 		fun newInstance(context: Context) = Intent(context, SharedPreferencesActivity::class.java)
 	}
@@ -30,7 +30,6 @@ internal class SharedPreferencesActivity : BaseActivity(), SharedPreferencesCont
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_shared_preferences)
 
 		presenter.create(this)
 

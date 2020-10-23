@@ -19,7 +19,7 @@ import com.gapps.oneone.utils.bottom_menu.models.MenuDataItem
 import com.gapps.oneone.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_oo_logs_list.*
 
-class LogsListActivity : BaseActivity(), LogsListContract.View {
+class LogsListActivity : BaseActivity(R.layout.activity_oo_logs_list), LogsListContract.View {
 	companion object {
 		const val SEND_REPORT = 0
 		const val CLEAR_ALL_DATA = 1
@@ -31,7 +31,6 @@ class LogsListActivity : BaseActivity(), LogsListContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_logs_list)
 
 		presenter.create(this)
 

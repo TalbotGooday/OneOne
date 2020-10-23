@@ -1,6 +1,7 @@
 package com.gapps.oneone
 
 import android.content.Context
+import android.util.Log
 import com.gapps.oneone.api.Api
 import com.gapps.oneone.api.ServiceInterceptor
 import com.gapps.oneone.api.models.LogOutModel
@@ -8,23 +9,41 @@ import com.gapps.oneone.utils.*
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
 class OneOneHelper : CoroutineScope {
 	override val coroutineContext: CoroutineContext
-		get() = SupervisorJob() + Dispatchers.Main
+		get() = Job() + Dispatchers.Main
 
 	private var api: Api? = null
 	private var gson: Gson? = null
+	private var loggerUrl: String? = null
+
+	fun checkCrashes(context: Context) {
+		launch {
+			val files = getLastCrashFilesText(context)
+			files.entries.forEach {
+				val file = it.value
+
+				try {
+					api?.logEvent(LogOutModel.fatal(file.text, file.name.substringBeforeLast(".")))
+					val crashFile = File(file.path)
+					if (!crashFile.isDirectory) {
+						crashFile.delete()
+					}
+				} catch (e: Exception) {
+
+				}
+			}
+		}
+	}
 
 	fun getNameFromType(context: Context?, fileName: String): String {
 		context ?: return ""
@@ -42,14 +61,29 @@ class OneOneHelper : CoroutineScope {
 	fun setLoggerBaseUrl(baseUrl: String) {
 		val okHttpClient = provideHttpClient()
 		gson = gson ?: provideGson()
-
+		loggerUrl = baseUrl
 		api = provideRetrofit(baseUrl, requireNotNull(gson), okHttpClient)
 	}
 
 	fun logWeb(type: String, tag: String? = null, message: Any?) {
 		val gson = gson ?: return
 
-		sendLogEvent(LogOutModel.create(gson, type, message, tag))
+		if (isActive) {
+			sendLogEvent(LogOutModel.create(gson, type, message, tag))
+		} else {
+			try {
+				OneOne.writeToLogFile(
+						text = if (message is String) {
+							message
+						} else {
+							gson.toJson(message)
+						},
+						isCrash = true
+				)
+			} catch (e: Exception) {
+				e.printStackTrace()
+			}
+		}
 	}
 
 	private fun sendLogEvent(event: LogOutModel) {
@@ -57,9 +91,10 @@ class OneOneHelper : CoroutineScope {
 			try {
 				api?.logEvent(event)
 			} catch (e: Exception) {
-				e.printStackTrace()
+				Log.e("OneOne", "Log server not responding: $loggerUrl")
 			}
 		}
+
 	}
 
 	private fun provideHttpClient(

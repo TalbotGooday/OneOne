@@ -22,7 +22,7 @@ import com.gapps.oneone.utils.extensions.toColorDrawable
 import com.gapps.oneone.utils.extensions.visibleOrGone
 import kotlinx.android.synthetic.main.activity_oo_log_files_list.*
 
-class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
+class LogFilesListActivity : BaseActivity(R.layout.activity_oo_log_files_list), LogFilesListContract.View {
 	companion object {
 		const val CLEAR_ALL_DATA = 0
 
@@ -33,7 +33,6 @@ class LogFilesListActivity : BaseActivity(), LogFilesListContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_log_files_list)
 
 		presenter.create(this)
 

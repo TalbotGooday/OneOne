@@ -9,7 +9,7 @@ import com.gapps.oneone.models.log.LogModel
 import com.gapps.oneone.screens.menu.MenuActivity
 import com.gapps.oneone.utils.*
 import com.gapps.oneone.utils.extensions.getAppInfoMap
-import com.gapps.oneone.utils.extensions.printOneOne
+import com.gapps.oneone.utils.extensions.printOneOneLogFile
 
 
 @SuppressLint("StaticFieldLeak")
@@ -22,6 +22,9 @@ object OneOne {
 	private var context: Context? = null
 	private val helper = OneOneHelper()
 
+	var isWebLoggingEnabled = true
+		private set
+
 	var appInfo: Map<String, String> = emptyMap()
 		private set
 
@@ -32,6 +35,8 @@ object OneOne {
 		initCrashLogger()
 
 		initLogFilesAndDirs(context)
+
+		helper.checkCrashes(context)
 	}
 
 	private fun initCrashLogger() {
@@ -45,10 +50,14 @@ object OneOne {
 			}
 
 			Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-				throwable.printOneOne()
+				throwable.printOneOneLogFile(isCrash = true)
 				oldHandler?.uncaughtException(thread, throwable)
 			}
 		}
+	}
+
+	fun setWebLoggingEnabled(enabled: Boolean) {
+		isWebLoggingEnabled = enabled
 	}
 
 	fun openLog(context: Context) {
@@ -131,10 +140,14 @@ object OneOne {
 		return getLogFilesList(ctx)
 	}
 
-	fun writeToLogFile(text: String, withAdditionalPhoneInfo: Boolean = false) {
+	fun writeToLogFile(
+			text: String,
+			withAdditionalPhoneInfo: Boolean = false,
+			isCrash: Boolean = false,
+	) {
 		val ctx = context ?: throw IllegalStateException("Call init() first")
 
-		writeTextToLogFile(ctx, text, withAdditionalPhoneInfo)
+		writeTextToLogFile(ctx, text, withAdditionalPhoneInfo, isCrash)
 	}
 
 	private fun log(type: String, tag: String? = null, message: Any?) {
@@ -142,7 +155,9 @@ object OneOne {
 
 		message ?: return
 
-		helper.logWeb(type, tag, message)
+		if (isWebLoggingEnabled) {
+			helper.logWeb(type, tag, message)
+		}
 
 		addMessageToLog(ctx, type, message, tag ?: DEFAULT_TAG)
 	}

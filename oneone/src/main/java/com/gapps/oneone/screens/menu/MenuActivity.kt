@@ -22,7 +22,7 @@ import com.gapps.oneone.utils.sendTo
 import com.gapps.oneone.utils.views.dialog.InputDialog
 import kotlinx.android.synthetic.main.activity_oo_menu.*
 
-internal class MenuActivity : BaseActivity(), MenuContract.View {
+internal class MenuActivity : BaseActivity(R.layout.activity_oo_menu), MenuContract.View {
 	companion object {
 		private const val GET_APP_INFO = 0
 		private const val LOGGER_URL = 1
@@ -39,7 +39,6 @@ internal class MenuActivity : BaseActivity(), MenuContract.View {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_oo_menu)
 
 		initViews()
 	}
