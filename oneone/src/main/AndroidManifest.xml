@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.gapps.oneone">
+    package="com.gapps.oneone">
 
-	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-	<application>
-		<activity
-			android:name=".screens.log.log_file.LogFileActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.shared_prefs.sp_file.SharedPrefsFileActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.shared_prefs.sp_files_list.SharedPreferencesActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.log.log_details.LogDetailsActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.log.logs_list.LogsListActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.log.log_files.LogFilesListActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.log.log_messages.LogMessagesActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
-		<activity
-			android:name=".screens.menu.MenuActivity"
-			android:theme="@style/LogTheme.NoActionBar" />
+    <application>
+        <activity
+            android:name=".screens.log.log_file.LogFileActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.shared_prefs.sp_file.SharedPrefsFileActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.shared_prefs.sp_files_list.SharedPreferencesActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.log.log_details.LogDetailsActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.log.logs_list.LogsListActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.log.log_files.LogFilesListActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.log.log_messages.LogMessagesActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
+        <activity
+            android:name=".screens.menu.MenuActivity"
+            android:theme="@style/LogTheme.NoActionBar" />
 
-		<activity-alias
-			android:name=".OneOne"
-			android:enabled="@bool/one_one_add_launcher_icon"
-			android:icon="@drawable/ic_one_one"
-			android:label="@string/logger_title"
-			android:targetActivity=".screens.menu.MenuActivity"
-			android:taskAffinity="com.gapps.oneone.${applicationId}"
-			android:theme="@style/LogTheme.NoActionBar">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
+        <activity-alias
+            android:name=".OneOne"
+            android:enabled="@bool/one_one_add_launcher_icon"
+            android:exported="true"
+            android:icon="@drawable/ic_one_one"
+            android:label="@string/logger_title"
+            android:targetActivity=".screens.menu.MenuActivity"
+            android:taskAffinity="com.gapps.oneone.${applicationId}"
+            android:theme="@style/LogTheme.NoActionBar">
+            <intent-filter android:exported="true">
+                <action android:name="android.intent.action.MAIN" />
 
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity-alias>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
 
-		<provider
-			android:name=".OneOneInitProvider"
-			android:authorities="${applicationId}.oneoneinitprovider"
-			android:enabled="true"
-			android:exported="false" />
+        <provider
+            android:name=".OneOneInitProvider"
+            android:authorities="${applicationId}.oneoneinitprovider"
+            android:enabled="true"
+            android:exported="false" />
 
-	</application>
-
+    </application>
 </manifest>
